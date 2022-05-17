@@ -1,3 +1,3 @@
-# Portfolio site for AdityaKrCodes
+# Portfolio site V2
 
-### This site is forked from [Dopefolio](https://github.com/rammcodes/Dopefolio) by [Ram Maheshwari](https://github.com/rammcodes).
+### This is the second version of my personal portfolio site.
