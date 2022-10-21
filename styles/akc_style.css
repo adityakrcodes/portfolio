@@ -1,5 +1,5 @@
 .skills > div{
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
 
 .skill_html:hover{
@@ -43,6 +43,36 @@
 }
 .skill_bash:hover::before{
     content: "$";
+}
+.skill_c:hover{
+    background-color: #1f6f93;
+    box-shadow:#1f6f93 1px 1px 15px 2px;
+    color:white;
+}
+.skill_node:hover{
+    background-color: #74AD5B;
+    box-shadow: #74AD5B 1px 1px 15px 2px;
+    color: #313131;
+}
+.skill_python:hover{
+    background-color: #366C9C;
+    box-shadow: #366C9C 1px 1px 15px 2px;
+    color: #F7C93E;
+}
+.skill_mysql:hover{
+    background-color: #005E86;
+    box-shadow: #005E86 1px 1px 15px 2px;
+    color: #faad30;
+}
+.skill_oracle:hover{
+    background-color: #F30607;
+    box-shadow: #F30607 1px 1px 15px 2px;
+    color:black;
+}
+.skill_gcloud:hover{
+    background: rgb(227,65,51);
+    box-shadow: rgb(227,65,51) 1px 1px 15px 2px;
+    color:white;
 }
 .projects__row-content > a:hover{
     text-shadow: 1px 1px 10px #ffffff;
