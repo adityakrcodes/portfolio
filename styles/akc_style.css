@@ -74,6 +74,19 @@
     box-shadow: rgb(227,65,51) 1px 1px 15px 2px;
     color:white;
 }
+
+.skill_solana:hover{
+    background: #14F195;
+    color: #9945FF;
+    box-shadow: #14F195  1px 1px 15px 2px;
+}
+
+.skill_react:hover{
+    background:#5ed3f3;
+    color: white;
+    box-shadow: #5ed3f3  1px 1px 15px 2px;
+}
+
 .projects__row-content > a:hover{
     text-shadow: 1px 1px 10px #ffffff;
 }
