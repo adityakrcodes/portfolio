@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import { logo } from '../styles/fonts';
 
 const Navbar = () => {
     return (
-        <nav className="bg-gray-800 text-white flex justify-between items-center px-10 py-2">
+        <nav className={`bg-gray-800 text-white flex justify-between items-center px-10 py-2 ${logo.className}`}>
             <div className="flex justify-between items-center">
             {/* logo */}
                 <div className="p-2 bg-gray-900 rounded-lg flex items-center">

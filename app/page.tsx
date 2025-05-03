@@ -1,8 +1,9 @@
 import Navbar from "./components/Navbar";
+import { text } from "./styles/fonts";
 
 export default function Home() {
   return (
-    <div>
+    <div className={`${text.className}`}>
         <Navbar />
     </div>
   );
