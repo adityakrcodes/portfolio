@@ -2,7 +2,7 @@ import localFont from 'next/font/local'
 
 const logo = localFont(
     {
-        src: '../../public/fonts/VT323/VT323-Regular.ttf'
+        src: '../../public/fonts/Jerseay10/Jersey10-Regular.ttf'
     }
 )
 
