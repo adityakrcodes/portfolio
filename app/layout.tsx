@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { cn } from "../lib/util";
+import React from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,10 +14,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+            <body className="bg-white dark:bg-black h-full w-full">
+                <div
+                    className={cn(
+                        "absolute inset-0",
+                        "[background-size:20px_20px] -z-10",
+                        "[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]",
+                        "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]",
+                    )}
+                />
+                {/* Radial gradient for the container to give a faded look */}
+                <div className="pointer-events-none absolute -z-10 inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+                    {children}
+            </body>
+      </html>
   );
 }
