@@ -2,13 +2,11 @@
 
 import Link from 'next/link';
 import { logo } from '../styles/fonts';
-import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
-    const [urlPath, setUrlPath] = useState('');
-    useEffect(() => {
-        setUrlPath(window.location.pathname);
-    }, [window.location.pathname]);
+    const pathname = usePathname();
+    
     return (
         <nav className={`bg-gray-800 text-white flex justify-between items-center px-10 py-2 ${logo.className}`}>
             <div className="flex justify-between items-center">
@@ -17,7 +15,7 @@ const Navbar = () => {
                     AKC
                 </div>
                 <span className='text-white px-3 text-2xl'>
-                    {urlPath}
+                    {pathname}
                 </span>
             </div>
             <div className='flex items-center space-x-4 text-2xl'>
