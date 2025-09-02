@@ -1,10 +1,14 @@
 import Navbar from "./components/Navbar";
-import { text } from "./styles/fonts";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className={`${text.className}`}>
+    <div>
         <Navbar />
+        <div>
+            
+        </div>
+        <Footer />
     </div>
   );
 }
