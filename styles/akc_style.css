@@ -113,3 +113,215 @@
     margin-top: 0.5rem;
     margin-left: 0.5rem;
 }
+
+/* Coming Soon Page Styles */
+.coming-soon-page {
+    background-color: #363636;
+    color: #F0F0F0;
+    font-family: 'Source Sans Pro', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.coming-soon-header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #F0F0F0;
+    letter-spacing: 1px;
+}
+
+.coming-soon-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    position: relative;
+}
+
+.coming-soon-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: left;
+}
+
+.coming-soon-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #F0F0F0;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.coming-soon-underline {
+    width: 100px;
+    height: 2px;
+    background-color: #F0F0F0;
+    margin-top: 0.5rem;
+}
+
+.countdown-box {
+    background-color: transparent;
+    border: 1px solid #F0F0F0;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    min-width: 300px;
+    margin: 2rem 0;
+}
+
+.countdown-date {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #F0F0F0;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.countdown-launch {
+    font-size: 1rem;
+    color: #F0F0F0;
+    font-weight: 400;
+}
+
+.info-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: 1px dashed #F0F0F0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    max-width: 300px;
+    background-color: transparent;
+}
+
+.info-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #F0F0F0;
+}
+
+.signup-section {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+.signup-box {
+    background-color: transparent;
+    border: 1px solid #F0F0F0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    min-width: 250px;
+}
+
+.signup-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #F0F0F0;
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.signup-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #F0F0F0;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #F0F0F0;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.signup-input::placeholder {
+    color: #F0F0F0;
+    opacity: 0.7;
+}
+
+.signup-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-discard {
+    flex: 1;
+    padding: 0.75rem;
+    background-color: #363636;
+    border: 1px solid #F0F0F0;
+    border-radius: 4px;
+    color: #F0F0F0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-discard:hover {
+    background-color: #4a4a4a;
+}
+
+.btn-submit {
+    flex: 1;
+    padding: 0.75rem;
+    background-color: #6B6B6B;
+    border: 1px solid #6B6B6B;
+    border-radius: 4px;
+    color: #F0F0F0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #7a7a7a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .coming-soon-page {
+        padding: 1rem;
+    }
+    
+    .coming-soon-title {
+        font-size: 2rem;
+    }
+    
+    .countdown-date {
+        font-size: 1.8rem;
+    }
+    
+    .countdown-box {
+        min-width: 250px;
+        padding: 1.5rem;
+    }
+    
+    .info-box {
+        position: relative;
+        margin-top: 2rem;
+        max-width: 100%;
+    }
+    
+    .signup-section {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .signup-box {
+        min-width: 200px;
+    }
+}
