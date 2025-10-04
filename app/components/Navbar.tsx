@@ -18,13 +18,38 @@ const Navbar = () => {
                     {pathname}
                 </span>
             </div>
-            <div className='flex items-center space-x-4 text-2xl'>
+            <div className='items-center space-x-4 text-2xl hidden md:flex'>
                 {/* Links */}
-                <Link href="/" className='p-2 underline underline-offset-3'>home</Link>
-                <Link href="/about" className='p-2'>about</Link>
-                <Link href="/services" className='p-2'>projects</Link>
-                <Link href="/blog" className='p-2'>blog</Link>
-                <Link href="/contact" className='p-2'>contact</Link>
+                <Link
+                    href="/"
+                    className={`p-2 ${pathname === "/" ? "underline underline-offset-3" : ""}`}
+                >
+                    home
+                </Link>
+                <Link
+                    href="/about"
+                    className={`p-2 ${pathname === "/about" ? "underline underline-offset-3" : ""}`}
+                >
+                    about
+                </Link>
+                <Link
+                    href="/services"
+                    className={`p-2 ${pathname === "/services" ? "underline underline-offset-3" : ""}`}
+                >
+                    projects
+                </Link>
+                <Link
+                    href="/blog"
+                    className={`p-2 ${pathname === "/blog" ? "underline underline-offset-3" : ""}`}
+                >
+                    blog
+                </Link>
+                <Link
+                    href="/contact"
+                    className={`p-2 ${pathname === "/contact" ? "underline underline-offset-3" : ""}`}
+                >
+                    contact
+                </Link>
             </div>
         </nav>
     );
