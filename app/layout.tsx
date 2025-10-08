@@ -14,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en">
-            <body className="bg-white dark:bg-black h-full w-full">
+      <html lang="en" className="h-full">
+            <body className="bg-white dark:bg-black h-full w-full flex flex-col">
                 <div
                     className={cn(
                         "absolute inset-0",
@@ -26,7 +26,9 @@ export default function RootLayout({
                 />
                 {/* Radial gradient for the container to give a faded look */}
                 <div className="pointer-events-none absolute -z-10 inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+                <div className="flex-1 flex flex-col">
                     {children}
+                </div>
             </body>
       </html>
   );
