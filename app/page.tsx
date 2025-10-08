@@ -15,7 +15,7 @@ export default function Home() {
                 </p>
             </div>
             <div className="md:w-1/2 w-10/12 flex justify-center items-center">
-                <img src="/images/pfp.png" alt="profile" className="w-7/12 h-full object-cover rounded-full shadow-[0_0_40px_rgba(79,196,255,0.25)]" />
+                <img src="/images/pfp.png" alt="profile" className="md:w-7/12 h-full object-cover rounded-full shadow-[0_0_40px_rgba(79,196,255,0.25)]" />
             </div>
         </div>
         <Footer />
