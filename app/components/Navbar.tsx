@@ -8,7 +8,7 @@ const Navbar = () => {
     const pathname = usePathname();
     
     return (
-        <nav className={`bg-gray-800 text-white flex justify-between items-center px-10 py-2 ${logo.className}`}>
+        <nav className={`bg-black/25 text-white flex justify-between items-center px-4 md:px-10 py-2 ${logo.className}`}>
             <div className="flex justify-between items-center">
             {/* logo */}
                 <div className="p-3.5 bg-gray-900 rounded-lg flex items-center text-2xl border border-gray-700">
@@ -100,11 +100,11 @@ const Navbar = () => {
             `}</style>
             <div
                 id="mobile-menu"
-                className="absolute top-16 left-0 w-full bg-gray-800 text-white flex flex-col items-center space-y-2 text-xl py-4 z-50 hidden md:hidden"
+                className="absolute bg-black/80 top-16 right-0 text-right text-white flex flex-col space-y-2 text-xl py-4 z-50 md:hidden"
             >
                 <Link
                     href="/"
-                    className={`p-2 w-full text-center ${pathname === "/" ? "underline underline-offset-3" : ""}`}
+                    className={`px-4 w-full text-right ${pathname === "/" ? "underline underline-offset-3" : ""}`}
                     onClick={() => {
                         const menu = document.getElementById('mobile-menu');
                         if (menu) {
@@ -120,7 +120,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                     href="/about"
-                    className={`p-2 w-full text-center ${pathname === "/about" ? "underline underline-offset-3" : ""}`}
+                    className={`px-4 w-full text-right ${pathname === "/about" ? "underline underline-offset-3" : ""}`}
                     onClick={() => {
                         const menu = document.getElementById('mobile-menu');
                         if (menu) {
@@ -136,7 +136,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                     href="/services"
-                    className={`p-2 w-full text-center ${pathname === "/services" ? "underline underline-offset-3" : ""}`}
+                    className={`px-4 w-full text-right ${pathname === "/services" ? "underline underline-offset-3" : ""}`}
                     onClick={() => {
                         const menu = document.getElementById('mobile-menu');
                         if (menu) {
@@ -152,7 +152,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                     href="/blog"
-                    className={`p-2 w-full text-center ${pathname === "/blog" ? "underline underline-offset-3" : ""}`}
+                    className={`px-4 w-full text-right ${pathname === "/blog" ? "underline underline-offset-3" : ""}`}
                     onClick={() => {
                         const menu = document.getElementById('mobile-menu');
                         if (menu) {
@@ -168,7 +168,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                     href="/contact"
-                    className={`p-2 w-full text-center ${pathname === "/contact" ? "underline underline-offset-3" : ""}`}
+                    className={`px-4 w-full text-right ${pathname === "/contact" ? "underline underline-offset-3" : ""}`}
                     onClick={() => {
                         const menu = document.getElementById('mobile-menu');
                         if (menu) {
