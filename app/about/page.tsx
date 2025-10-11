@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export default function About() {
     return (
-        <div className="flex flex-col min-h-full bg-black text-white">
+        <div className="flex flex-col min-h-full text-white">
             <Navbar />
-            <div className="grid-background w-full sm:w-10/12 md:w-5/12 mx-auto">
+            <div className="w-full md:w-5/12 mx-auto">
                 <div className="container mx-auto px-10 py-10">
                     <div className="flex flex-col lg:flex-row gap-10 items-start">
                         {/* Left Column - About Text */}

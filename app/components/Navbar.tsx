@@ -8,9 +8,8 @@ const Navbar = () => {
     const pathname = usePathname();
     
     return (
-        <nav className={`bg-black/25 text-white flex justify-between items-center px-4 md:px-10 py-2 ${logo.className}`}>
+        <nav className={` text-white flex justify-between items-center px-4 md:w-8/12 mx-auto py-2 ${logo.className}`}>
             <div className="flex justify-between items-center">
-            {/* logo */}
                 <div className="p-3.5 bg-gray-900 rounded-lg flex items-center text-2xl border border-gray-700">
                     AKC
                 </div>
