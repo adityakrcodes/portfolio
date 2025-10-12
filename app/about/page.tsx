@@ -1,12 +1,9 @@
-import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { logo, text } from "@/app/styles/fonts";
-import Image from "next/image";
 
 export default function About() {
     return (
         <div className="flex flex-col min-h-full text-white">
-            <Navbar />
             <div className="w-full md:w-5/12 mx-auto">
                 <div className="container mx-auto px-10 py-10">
                     <div className="flex flex-col lg:flex-row gap-10 items-start">

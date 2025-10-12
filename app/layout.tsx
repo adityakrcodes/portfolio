@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cn } from "../lib/util";
 import React from "react";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
   title: "AdityaKrCodes",
@@ -27,6 +28,7 @@ export default function RootLayout({
                 {/* Radial gradient for the container to give a faded look */}
                 <div className="pointer-events-none absolute -z-10 inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
                 <div className="flex-1 flex flex-col">
+                    <Navbar />
                     {children}
                 </div>
             </body>
