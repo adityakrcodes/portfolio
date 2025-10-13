@@ -32,8 +32,8 @@ const Navbar = () => {
                     about
                 </Link>
                 <Link
-                    href="/services"
-                    className={`p-2 ${pathname === "/services" ? "underline underline-offset-3" : ""}`}
+                    href="/projects"
+                    className={`p-2 ${pathname === "/projects" ? "underline underline-offset-3" : ""}`}
                 >
                     projects
                 </Link>
@@ -134,8 +134,8 @@ const Navbar = () => {
                     about
                 </Link>
                 <Link
-                    href="/services"
-                    className={`px-4 w-full text-right ${pathname === "/services" ? "underline underline-offset-3" : ""}`}
+                    href="/projects"
+                    className={`px-4 w-full text-right ${pathname === "/projects" ? "underline underline-offset-3" : ""}`}
                     onClick={() => {
                         const menu = document.getElementById('mobile-menu');
                         if (menu) {
