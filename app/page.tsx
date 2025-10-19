@@ -16,7 +16,6 @@ export default function Home() {
                 <img src="/images/pfp.png" alt="profile" className="md:w-7/12 h-full object-cover rounded-full shadow-[0_0_40px_rgba(79,196,255,0.25)]" />
             </div>
         </div>
-        <Footer />
     </div>
   );
 }
