@@ -43,12 +43,6 @@ const Navbar = () => {
                 >
                     blog
                 </Link>
-                <Link
-                    href="/contact"
-                    className={`p-2 ${pathname === "/contact" ? "underline underline-offset-3" : ""}`}
-                >
-                    contact
-                </Link>
             </div>
             {/* Hamburger for mobile */}
             <div className="md:hidden flex items-center">
@@ -164,22 +158,6 @@ const Navbar = () => {
                     }}
                 >
                     blog
-                </Link>
-                <Link
-                    href="/contact"
-                    className={`px-4 w-full text-right ${pathname === "/contact" ? "underline underline-offset-3" : ""}`}
-                    onClick={() => {
-                        const menu = document.getElementById('mobile-menu');
-                        if (menu) {
-                            menu.classList.remove('animate-fade-in');
-                            menu.classList.add('animate-fade-out');
-                            setTimeout(() => {
-                                menu.classList.add('hidden');
-                            }, 200);
-                        }
-                    }}
-                >
-                    contact
                 </Link>
             </div>
         </nav>
