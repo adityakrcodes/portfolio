@@ -1,10 +1,9 @@
-import Footer from "./components/Footer";
 import { logo, text } from "./styles/fonts";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-full">
-        <div className="flex-1 flex md:flex-row flex-col-reverse justify-center items-center gap-10 md:px-10 min-h-[80vh] w-10/12 mx-auto">
+    <div className="flex flex-col h-full">
+        <div className="flex-1 flex md:flex-row flex-col-reverse justify-center items-center gap-10 md:px-10 min-h-[80vh w-10/12 mx-auto">
             <div className="md:w-5/12 w-10/12 text-xl md:text-2xl">
                 <h1 className={`${logo.className} text-4xl md:text-6xl`}>Yo 👋🏻</h1>
                 <p className={`${logo.className} text-4xl md:text-5xl`}>I am Aditya</p>
