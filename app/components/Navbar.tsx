@@ -93,7 +93,7 @@ const Navbar = () => {
             `}</style>
             <div
                 id="mobile-menu"
-                className="absolute bg-black/80 top-16 right-0 text-right text-white flex flex-col space-y-2 text-xl py-4 z-50 md:hidden"
+                className="absolute bg-black/80 top-16 right-0 text-right text-white flex flex-col space-y-2 text-xl py-4 z-50 hidden"
             >
                 <Link
                     href="/"
