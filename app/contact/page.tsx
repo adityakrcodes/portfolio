@@ -1,8 +1,12 @@
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import { logo, text } from "@/app/styles/fonts";
+import Image from "next/image";
 
 export default function About() {
     return (
-        <div className="flex flex-col text-white">
+        <div className="flex flex-col min-h-full text-white">
+            <Navbar />
             <div className="w-full md:w-5/12 mx-auto">
                 <div className="container mx-auto px-10 py-10">
                     <div className="flex flex-col lg:flex-row gap-10 items-start">
@@ -13,19 +17,7 @@ export default function About() {
                             </h1>
                             <div className={`text-lg leading-relaxed ${text.className}`}>
                                 <p>
-                                    Hi, I am Aditya a Full Stack Developer with over 7 years of experience in building scalable,
-                                    high-performance softwares. Using the power of code I specialise in building 
-                                    fully scalable MVPs from the ground up, solving complex problems and creating 
-                                    robust applications.
-                                </p>
-                                <p>
-                                    As the founder of Aether Web Media previously known as AKC Web Media, I've 
-                                    helped numerous businesses establish a powerful online presence and build 
-                                    profitable ventures. Whether it's building a complex application or launching 
-                                    a brand's first website, I'm focused on creating profitable online ventures.    
-                                </p>
-                                <p>
-                                    While my coding journey continues in Bangalore, my roots are in Patna, Bihar.
+                                    I am a MERN Developer and a Solana Dev writing Secure I am a •MERN Developer. and a Solana Dev writing Secure I am a MERN Developer and a Solana Dev writing Secure I am a MERN Developer and a Solana Dev writing •Secure
                                 </p>
                             </div>
                             {/* Expertise Section */}
@@ -34,11 +26,11 @@ export default function About() {
                                     Expertise
                                 </h2>
                                 <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-                                    <div className={`flex flex-wrap gap-3 ${text.className}`}>
-                                        {['Full Stack Development'].map((skill, index) => (
+                                    <div className="flex flex-wrap gap-3">
+                                        {['React', 'JavaScript', 'React', 'JavaScript', 'JavaScript', 'React'].map((skill, index) => (
                                             <span
                                                 key={index}
-                                                className="bg-gray-700 text-white px-4 py-2 rounded-lg font-bold"
+                                                className="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
                                             >
                                                 {skill}
                                             </span>
@@ -67,8 +59,10 @@ export default function About() {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

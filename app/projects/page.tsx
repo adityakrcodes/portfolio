@@ -1,44 +1,34 @@
+import Footer from "@/app/components/Footer";
 import { logo, text } from "@/app/styles/fonts";
 
 export default function About() {
     return (
-        <div className="flex flex-col text-white">
+        <div className="flex flex-col min-h-full text-white">
             <div className="w-full md:w-5/12 mx-auto">
                 <div className="container mx-auto px-10 py-10">
                     <div className="flex flex-col lg:flex-row gap-10 items-start">
-                        {/* Left Column - About Text */}
                         <div className="flex-1 space-y-8">
                             <h1 className={`text-6xl font-bold ${logo.className}`}>
                                 About
                             </h1>
                             <div className={`text-lg leading-relaxed ${text.className}`}>
                                 <p>
-                                    Hi, I am Aditya a Full Stack Developer with over 7 years of experience in building scalable,
-                                    high-performance softwares. Using the power of code I specialise in building 
-                                    fully scalable MVPs from the ground up, solving complex problems and creating 
-                                    robust applications.
-                                </p>
-                                <p>
-                                    As the founder of Aether Web Media previously known as AKC Web Media, I've 
-                                    helped numerous businesses establish a powerful online presence and build 
-                                    profitable ventures. Whether it's building a complex application or launching 
-                                    a brand's first website, I'm focused on creating profitable online ventures.    
-                                </p>
-                                <p>
-                                    While my coding journey continues in Bangalore, my roots are in Patna, Bihar.
-                                </p>
+                                I'm a Full Stack Developer with 8 years of experience in building scalable, high-performance software. My passion lies in using the power of code to solve complex problems and create robust applications from the ground up.
+
+                                As the founder of Aether Web Media, I've helped numerous businesses establish a powerful online presence and build profitable ventures. Whether it's building a complex application or launching a brand's first website, I'm focused on creating profitable online ventures. 
+
+                                While my coding journey continues in Bangalore, my roots are in Patna, Bihar.                                </p>
                             </div>
-                            {/* Expertise Section */}
                             <div className="mt-16 space-y-6">
                                 <h2 className={`text-3xl font-bold ${logo.className}`}>
                                     Expertise
                                 </h2>
                                 <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-                                    <div className={`flex flex-wrap gap-3 ${text.className}`}>
-                                        {['Full Stack Development'].map((skill, index) => (
+                                    <div className="flex flex-wrap gap-3">
+                                        {['React', 'JavaScript', 'React', 'JavaScript', 'JavaScript', 'React'].map((skill, index) => (
                                             <span
                                                 key={index}
-                                                className="bg-gray-700 text-white px-4 py-2 rounded-lg font-bold"
+                                                className="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
                                             >
                                                 {skill}
                                             </span>
@@ -46,8 +36,6 @@ export default function About() {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Tools and Technologies Section */}
                             <div className="mt-8 space-y-6">
                                 <h2 className={`text-3xl font-bold ${logo.className}`}>
                                     Tools and Technologies
@@ -67,6 +55,7 @@ export default function About() {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
