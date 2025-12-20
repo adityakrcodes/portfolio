@@ -8,7 +8,7 @@ export default function Home() {
                 <div className="flex justify-between items-center mb-5 md:mb-0">
                     <div>
                         <h1 className={`${logo.className} text-4xl md:text-6xl`}>Yo 👋🏻</h1>
-                        <p className={`${logo.className} text-4xl md:text-5xl`}>I am Aditya</p>
+                        <p className={`${logo.className} text-4xl md:text-5xl`}>I'm Aditya</p>
                     </div>
                     <div className="w-2/6 md:hidden">
                         <img src="/images/pfp.png" alt="profile" className="aspect-square h-full object-cover rounded-full shadow-[0_0_40px_rgba(79,196,255,0.25)]" />
