@@ -169,8 +169,8 @@ export default function Home() {
               variants={fadeInUp}
               className="relative w-64 h-64 md:w-80 md:h-80"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-3xl blur-3xl" />
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-zinc-800 shadow-[0_0_60px_-12px_rgba(255,255,255,0.2)]">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-full blur-3xl" />
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-zinc-800 shadow-[0_0_60px_-12px_rgba(255,255,255,0.2)]">
                 <Image
                   src="/images/pfp.png"
                   alt="Aditya"
@@ -179,15 +179,6 @@ export default function Home() {
                   priority
                 />
               </div>
-              {/* Floating badge */}
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.5, type: "spring" }}
-                className="absolute -bottom-4 -right-4 px-4 py-2 bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
-              >
-                <span className="text-2xl">🚀</span>
-              </motion.div>
             </motion.div>
           </motion.div>
         </div>
