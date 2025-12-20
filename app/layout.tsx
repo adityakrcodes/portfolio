@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
-import { cn } from "../lib/util";
 import React from "react";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { text } from "./styles/fonts";
 
 export const metadata: Metadata = {
-  title: "AdityaKrCodes",
-  description: "A Full Stack Developer",
+  title: "Aditya | Full Stack Developer",
+  description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Building digital experiences that matter.",
+  keywords: ["Full Stack Developer", "React", "Next.js", "TypeScript", "Web Development"],
+  authors: [{ name: "Aditya" }],
+  openGraph: {
+    title: "Aditya | Full Stack Developer",
+    description: "Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -15,23 +23,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en" className="h-full">
-            <body className="bg-white dark:bg-black h-full w-full flex flex-col">
-                <div
-                    className={cn(
-                        "absolute inset-0",
-                        "[background-size:20px_20px] -z-10",
-                        "[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]",
-                        "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]",
-                    )}
-                />
-                {/* Radial gradient for the container to give a faded look */}
-                <div className="pointer-events-none absolute -z-10 inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
-                <div className="flex-1 flex flex-col">
-                    <Navbar />
-                    {children}
-                </div>
-            </body>
-      </html>
+      <html lang="en" className="dark" style={{ '--font-league-spartan': text.style.fontFamily } as React.CSSProperties}>
+      <body className={`min-h-screen flex flex-col ${text.className}`}>
+        {/* Background layers */}
+        <div className="fixed inset-0 grid-pattern pointer-events-none" />
+        <div className="fixed inset-0 radial-overlay pointer-events-none" />
+        
+        {/* Content */}
+        <Navbar />
+        <main className="flex-1 pt-24">
+          {children}
+        </main>
+        <Footer />
+      </body>
+    </html>
   );
 }

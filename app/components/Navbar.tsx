@@ -1,167 +1,175 @@
-"use client"
+"use client";
 
-import Link from 'next/link';
-import { logo } from '../styles/fonts';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { logo, text } from "../styles/fonts";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+];
 
 const Navbar = () => {
-    const pathname = usePathname();
-    
-    return (
-        <nav className={` text-white flex justify-between items-center px-4 w-full md:w-8/12 mx-auto py-2 ${logo.className}`}>
-            <div className="flex justify-between items-center">
-                <div className="p-3.5 bg-gray-900 rounded-lg flex items-center text-2xl border border-gray-700">
-                    AKC
-                </div>
-                <span className='text-white px-3 text-2xl'>
-                    {pathname}
-                </span>
+  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <>
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 px-4 py-4"
+      >
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center justify-between glass-card px-4 py-3">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center font-bold text-black text-sm transition-transform group-hover:scale-105">
+                AK
+              </div>
+              <span className={`font-semibold text-lg hidden sm:block ${logo.className}`}>
+                Aditya<span className="text-white">.</span>
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1 bg-zinc-900/50 rounded-full p-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${text.className} ${
+                    pathname === link.href
+                      ? "text-black"
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  {pathname === link.href && (
+                    <motion.div
+                      layoutId="navbar-active"
+                      className="absolute inset-0 bg-white rounded-full"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
+                </Link>
+              ))}
             </div>
-            {/* Desktop Links */}
-            <div className='items-center space-x-4 text-2xl hidden md:flex'>
-                <Link
-                    href="/"
-                    className={`p-2 ${pathname === "/" ? "underline underline-offset-3" : ""}`}
-                >
-                    home
-                </Link>
-                <Link
-                    href="/about"
-                    className={`p-2 ${pathname === "/about" ? "underline underline-offset-3" : ""}`}
-                >
-                    about
-                </Link>
-                <Link
-                    href="/projects"
-                    className={`p-2 ${pathname === "/projects" ? "underline underline-offset-3" : ""}`}
-                >
-                    projects
-                </Link>
-                <Link
-                    href="/blog"
-                    className={`p-2 ${pathname === "/blog" ? "underline underline-offset-3" : ""}`}
-                >
-                    blog
-                </Link>
-            </div>
-            {/* Hamburger for mobile */}
-            <div className="md:hidden flex items-center">
-                <button
-                    className="text-white focus:outline-none"
-                    onClick={() => {
-                        const menu = document.getElementById('mobile-menu');
-                        if (menu) {
-                            if (menu.classList.contains('hidden')) {
-                                menu.classList.remove('hidden');
-                                // Trigger reflow to enable transition
-                                void menu.offsetWidth;
-                                menu.classList.add('animate-fade-in');
-                                menu.classList.remove('animate-fade-out');
-                            } else {
-                                menu.classList.remove('animate-fade-in');
-                                menu.classList.add('animate-fade-out');
-                                // Wait for animation to finish before hiding
-                                setTimeout(() => {
-                                    menu.classList.add('hidden');
-                                }, 200); // match animation duration
-                            }
-                        }
-                    }}
-                    aria-label="Open menu"
-                >
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-            {/* Mobile Menu */}
-            <style jsx global>{`
-                @keyframes fadeInMenu {
-                    from { opacity: 0; transform: translateY(-10px);}
-                    to { opacity: 1; transform: translateY(0);}
-                }
-                @keyframes fadeOutMenu {
-                    from { opacity: 1; transform: translateY(0);}
-                    to { opacity: 0; transform: translateY(-10px);}
-                }
-                .animate-fade-in {
-                    animation: fadeInMenu 0.2s ease-out forwards;
-                }
-                .animate-fade-out {
-                    animation: fadeOutMenu 0.2s ease-in forwards;
-                }
-            `}</style>
-            <div
-                id="mobile-menu"
-                className="absolute bg-black/80 top-16 right-0 text-right text-white flex flex-col space-y-2 text-xl py-4 z-50 hidden"
+
+            {/* CTA Button */}
+            <Link
+              href="/contact"
+              className="hidden md:flex btn-primary text-sm"
             >
+              <span>Get in touch</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </Link>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {mobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-20 left-4 right-4 z-40 glass-card p-4 md:hidden"
+          >
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
                 <Link
-                    href="/"
-                    className={`px-4 w-full text-right ${pathname === "/" ? "underline underline-offset-3" : ""}`}
-                    onClick={() => {
-                        const menu = document.getElementById('mobile-menu');
-                        if (menu) {
-                            menu.classList.remove('animate-fade-in');
-                            menu.classList.add('animate-fade-out');
-                            setTimeout(() => {
-                                menu.classList.add('hidden');
-                            }, 200);
-                        }
-                    }}
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${text.className} ${
+                    pathname === link.href
+                      ? "bg-white text-black"
+                      : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                  }`}
                 >
-                    home
+                  {link.label}
                 </Link>
-                <Link
-                    href="/about"
-                    className={`px-4 w-full text-right ${pathname === "/about" ? "underline underline-offset-3" : ""}`}
-                    onClick={() => {
-                        const menu = document.getElementById('mobile-menu');
-                        if (menu) {
-                            menu.classList.remove('animate-fade-in');
-                            menu.classList.add('animate-fade-out');
-                            setTimeout(() => {
-                                menu.classList.add('hidden');
-                            }, 200);
-                        }
-                    }}
-                >
-                    about
-                </Link>
-                <Link
-                    href="/projects"
-                    className={`px-4 w-full text-right ${pathname === "/projects" ? "underline underline-offset-3" : ""}`}
-                    onClick={() => {
-                        const menu = document.getElementById('mobile-menu');
-                        if (menu) {
-                            menu.classList.remove('animate-fade-in');
-                            menu.classList.add('animate-fade-out');
-                            setTimeout(() => {
-                                menu.classList.add('hidden');
-                            }, 200);
-                        }
-                    }}
-                >
-                    projects
-                </Link>
-                <Link
-                    href="/blog"
-                    className={`px-4 w-full text-right ${pathname === "/blog" ? "underline underline-offset-3" : ""}`}
-                    onClick={() => {
-                        const menu = document.getElementById('mobile-menu');
-                        if (menu) {
-                            menu.classList.remove('animate-fade-in');
-                            menu.classList.add('animate-fade-out');
-                            setTimeout(() => {
-                                menu.classList.add('hidden');
-                            }, 200);
-                        }
-                    }}
-                >
-                    blog
-                </Link>
+              ))}
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="btn-primary text-sm justify-center mt-2"
+              >
+                Get in touch
+              </Link>
             </div>
-        </nav>
-    );
-}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu Backdrop */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 md:hidden"
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
 
 export default Navbar;
