@@ -111,7 +111,7 @@ export default function Home() {
                 variants={fadeInUp}
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-800/50 border border-zinc-700/50 mb-6"
               >
-                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-sm text-zinc-400">
                   Available for work
                 </span>
