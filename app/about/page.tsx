@@ -45,7 +45,7 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <span className={`section-label ${text.className}`}>About</span>
+            <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>About</span>
             <h1 className={`text-4xl md:text-5xl font-bold ${logo.className}`}>Me</h1>
           </motion.div>
 
@@ -57,7 +57,7 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="md:col-span-1"
             >
-              <div className="glass-card p-6 sticky top-28">
+              <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 sticky top-28 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
                 <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-6">
                   <Image
                     src="/images/pfp.png"
@@ -91,7 +91,7 @@ export default function About() {
               className="md:col-span-2 space-y-8"
             >
               {/* Bio */}
-              <div className="glass-card p-6">
+              <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
                 <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${logo.className}`}>
                   <span className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -122,7 +122,7 @@ export default function About() {
               </div>
 
               {/* Skills */}
-              <div className="glass-card p-6">
+              <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
                 <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${logo.className}`}>
                   <span className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -137,7 +137,7 @@ export default function About() {
                       <h4 className={`text-sm font-medium text-zinc-500 mb-3 ${text.className}`}>{category}</h4>
                       <div className="flex flex-wrap gap-2">
                         {items.map((skill) => (
-                          <span key={skill} className="skill-tag">
+                          <span key={skill} className="inline-flex items-center px-3 py-1.5 text-sm font-medium bg-white/10 text-white rounded-full border border-white/20 transition-all hover:bg-white/15 hover:scale-105">
                             {skill}
                           </span>
                         ))}
@@ -148,7 +148,7 @@ export default function About() {
               </div>
 
               {/* Timeline */}
-              <div className="glass-card p-6">
+              <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
                 <h3 className={`text-lg font-semibold mb-6 flex items-center gap-2 ${logo.className}`}>
                   <span className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

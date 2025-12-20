@@ -26,7 +26,7 @@ const Navbar = () => {
         className="fixed top-0 left-0 right-0 z-50 px-4 py-4"
       >
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-between glass-card px-4 py-3">
+          <div className="flex items-center justify-between bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl px-4 py-3 transition-all hover:bg-zinc-800/80 hover:border-white/20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center font-bold text-black text-sm transition-transform group-hover:scale-105">
@@ -68,7 +68,7 @@ const Navbar = () => {
             {/* CTA Button */}
             <Link
               href="/contact"
-              className="hidden md:flex btn-primary text-sm"
+              className="hidden md:flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium bg-white text-[#0a0a0b] rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-zinc-300"
             >
               <span>Get in touch</span>
               <svg
@@ -127,7 +127,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-20 left-4 right-4 z-40 glass-card p-4 md:hidden"
+            className="fixed top-20 left-4 right-4 z-40 bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-4 md:hidden transition-all hover:bg-zinc-800/80 hover:border-white/20"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
@@ -147,7 +147,7 @@ const Navbar = () => {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="btn-primary text-sm justify-center mt-2"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium bg-white text-[#0a0a0b] rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-zinc-300 mt-2"
               >
                 Get in touch
               </Link>

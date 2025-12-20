@@ -110,7 +110,7 @@ export default function Home() {
                 variants={fadeInUp}
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-800/50 border border-zinc-700/50 mb-6"
               >
-                <span className="status-dot" />
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 <span className="text-sm text-zinc-400">
                   Available for work
                 </span>
@@ -121,7 +121,7 @@ export default function Home() {
                 className={`text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 ${logo.className}`}
               >
                 Hi, I'm{" "}
-                <span className="text-gradient">Aditya</span>
+                <span className="bg-gradient-to-br from-white via-zinc-300 to-zinc-400 bg-clip-text text-transparent">Aditya</span>
                 <br />
                 <span className="text-zinc-400">Full Stack Developer</span>
               </motion.h1>
@@ -141,7 +141,7 @@ export default function Home() {
                 variants={fadeInUp}
                 className="flex flex-wrap justify-center md:justify-start gap-4 w-full"
               >
-                <Link href="/contact" className="btn-primary">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium bg-white text-[#0a0a0b] rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-zinc-300">
                   <span>Get in touch</span>
                   <svg
                     className="w-4 h-4"
@@ -157,7 +157,7 @@ export default function Home() {
                     />
                   </svg>
                 </Link>
-                <Link href="/projects" className="btn-secondary">
+                <Link href="/projects" className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium bg-transparent text-white border border-zinc-700/40 rounded-full transition-all hover:border-white hover:bg-white/10">
                   <span>View Projects</span>
                 </Link>
               </motion.div>
@@ -169,7 +169,7 @@ export default function Home() {
               className="relative w-64 h-64 md:w-80 md:h-80"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-3xl blur-3xl" />
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-zinc-800 glow">
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-zinc-800 shadow-[0_0_60px_-12px_rgba(255,255,255,0.2)]">
                 <Image
                   src="/images/pfp.png"
                   alt="Aditya"
@@ -183,7 +183,7 @@ export default function Home() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.5, type: "spring" }}
-                className="absolute -bottom-4 -right-4 px-4 py-2 glass-card"
+                className="absolute -bottom-4 -right-4 px-4 py-2 bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
               >
                 <span className="text-2xl">🚀</span>
               </motion.div>
@@ -202,7 +202,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <span className={`section-label ${text.className}`}>Featured</span>
+            <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Featured</span>
             <h2 className={`text-3xl md:text-4xl font-bold ${logo.className}`}>Experience</h2>
           </motion.div>
 
@@ -214,7 +214,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card p-6"
+                className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
               >
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
                   <div className="flex items-start gap-4">
@@ -243,7 +243,7 @@ export default function Home() {
 
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((tech) => (
-                    <span key={tech} className="skill-tag">
+                    <span key={tech} className="inline-flex items-center px-3 py-1.5 text-sm font-medium bg-white/10 text-white rounded-full border border-white/20 transition-all hover:bg-white/15 hover:scale-105">
                       {tech}
                     </span>
                   ))}
@@ -291,7 +291,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <span className={`section-label ${text.className}`}>Featured</span>
+            <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Featured</span>
             <h2 className={`text-3xl md:text-4xl font-bold ${logo.className}`}>Projects</h2>
           </motion.div>
 
@@ -304,7 +304,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card overflow-hidden group project-card"
+                className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl overflow-hidden group transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
               >
                 {/* Project Image */}
                 <div className="relative h-40 overflow-hidden">
@@ -314,7 +314,7 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="project-image-overlay" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   {/* Status Badge */}
                   <div className="absolute top-3 right-3">
                     <span
@@ -370,7 +370,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mt-12 flex justify-center"
           >
-            <Link href="/projects" className="btn-secondary">
+            <Link href="/projects" className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium bg-transparent text-white border border-zinc-700/40 rounded-full transition-all hover:border-white hover:bg-white/10">
               <span>View all projects</span>
               <svg
                 className="w-4 h-4"
@@ -401,9 +401,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <span className={`section-label ${text.className}`}>About</span>
+              <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>About</span>
               <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${logo.className}`}>Me</h2>
-              <div className="glass-card p-6">
+              <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
                 <p className={`text-zinc-400 leading-relaxed mb-4 ${text.className}`}>
                   I'm a Full Stack Developer with a passion for creating
                   beautiful, functional web applications. With years of
@@ -426,9 +426,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <span className={`section-label ${text.className}`}>Tech Stack</span>
+              <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Tech Stack</span>
               <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${logo.className}`}>Skills</h2>
-              <div className="glass-card p-6">
+              <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, index) => (
                     <motion.span
@@ -437,7 +437,7 @@ export default function Home() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="skill-tag"
+                      className="inline-flex items-center px-3 py-1.5 text-sm font-medium bg-white/10 text-white rounded-full border border-white/20 transition-all hover:bg-white/15 hover:scale-105"
                     >
                       {skill}
                     </motion.span>
@@ -457,7 +457,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="glass-card p-12 text-center"
+            className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-12 text-center transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
           >
             <h2 className={`text-2xl md:text-3xl font-bold mb-4 ${logo.className}`}>
               Let's build something amazing together
@@ -467,7 +467,7 @@ export default function Home() {
               how we can bring your ideas to life.
             </p>
             <div className="flex justify-center">
-              <Link href="/contact" className="btn-primary">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium bg-white text-[#0a0a0b] rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-zinc-300">
                 <span>Start a conversation</span>
                 <svg
                   className="w-4 h-4"

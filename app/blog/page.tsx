@@ -72,7 +72,7 @@ export default function Blog() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <span className={`section-label ${text.className}`}>Writing</span>
+            <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Writing</span>
             <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${logo.className}`}>Blog</h1>
             <p className={`text-zinc-400 max-w-2xl ${text.className}`}>
               Thoughts on web development, programming, and building great
@@ -96,7 +96,7 @@ export default function Blog() {
                 >
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="block glass-card p-6 h-full group"
+                    className="block bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 h-full group transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
                   >
                     <div className="flex flex-col h-full">
                       {/* Tags */}
@@ -117,7 +117,7 @@ export default function Blog() {
                       </h3>
 
                       {/* Excerpt */}
-                      <p className={`text-zinc-400 text-sm mb-4 flex-grow ${text.className}`}>
+                      <p className={`text-zinc-400 text-sm mb-4 grow ${text.className}`}>
                         {post.excerpt}
                       </p>
 
@@ -189,7 +189,7 @@ export default function Blog() {
             viewport={{ once: true }}
             className="mt-16"
           >
-            <div className="glass-card p-8 text-center">
+            <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-8 text-center transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
               <h3 className={`text-xl font-semibold mb-2 ${logo.className}`}>
                 Stay updated with my latest posts
               </h3>
@@ -203,7 +203,7 @@ export default function Blog() {
                   placeholder="Enter your email"
                   className="flex-1 px-4 py-3 bg-zinc-800/50 border border-zinc-700 rounded-xl text-sm focus:outline-none focus:border-white transition-colors"
                 />
-                <button type="submit" className="btn-primary whitespace-nowrap">
+                <button type="submit" className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium bg-white text-[#0a0a0b] rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-zinc-300 whitespace-nowrap">
                   Subscribe
                 </button>
               </form>

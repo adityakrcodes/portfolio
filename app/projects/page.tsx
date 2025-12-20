@@ -95,7 +95,7 @@ export default function Projects() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <span className={`section-label ${text.className}`}>Portfolio</span>
+            <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Portfolio</span>
             <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${logo.className}`}>Projects</h1>
             <p className={`text-zinc-400 max-w-2xl ${text.className}`}>
               A collection of projects I've built, from full-stack applications to
@@ -140,7 +140,7 @@ export default function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="glass-card overflow-hidden"
+                    className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl overflow-hidden transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
                   >
                     <div className="flex flex-col md:flex-row">
                       {/* Image */}
@@ -151,7 +151,7 @@ export default function Projects() {
                           fill
                           className="object-cover"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--card-bg)] hidden md:block" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-zinc-800/60 hidden md:block" />
                       </div>
 
                       {/* Content */}
@@ -253,7 +253,7 @@ export default function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    className="glass-card p-5 group"
+                    className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-5 group transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white">
