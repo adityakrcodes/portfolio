@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
 import { logo, text } from "./styles/fonts";
+import GitHubContributions from "./components/GitHubContributions";
 
 // Animation variants
 const fadeInUp = {
@@ -205,7 +206,16 @@ export default function Home() {
             <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Featured</span>
             <h2 className={`text-3xl md:text-4xl font-bold ${logo.className}`}>Experience</h2>
           </motion.div>
-
+          {/* GitHub Contributions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <GitHubContributions />
+          </motion.div>
           <div className="space-y-6">
             {experiences.map((exp, index) => (
               <motion.div
