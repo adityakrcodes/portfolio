@@ -33,6 +33,13 @@ const LEVEL_COLORS = [
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+function formatYMD(date: Date): string {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
 function getMonthLabels(weeks: ContributionWeek[], year: number): { label: string; index: number }[] {
     const labels: { label: string; index: number }[] = [];
     let lastMonth = -1;
@@ -41,12 +48,12 @@ function getMonthLabels(weeks: ContributionWeek[], year: number): { label: strin
         if (week.contributionDays.length > 0) {
             // Find the first day of the week that belongs to the current year
             const firstDayInYear = week.contributionDays.find(day => {
-                const date = new Date(day.date);
+                const date = new Date(day.date + 'T00:00:00'); // Parse as local midnight
                 return date.getFullYear() === year;
             });
 
             if (firstDayInYear) {
-                const date = new Date(firstDayInYear.date);
+                const date = new Date(firstDayInYear.date + 'T00:00:00');
                 const month = date.getMonth();
                 if (month !== lastMonth) {
                     labels.push({ label: MONTHS[month], index: weekIndex });
@@ -106,14 +113,6 @@ export default function GitHubContributions() {
                     });
                 });
 
-                // Get the first and last dates
-                if (contributions.length === 0) {
-                    setWeeks([]);
-                    setTotalContributions(0);
-                    setLoading(false);
-                    return;
-                }
-
                 // Start from January 1st of the current year
                 const yearStart = new Date(year, 0, 1);
                 // End at December 31st of the current year
@@ -132,7 +131,7 @@ export default function GitHubContributions() {
 
                     // Build 7 days for this week (Sunday to Saturday)
                     for (let i = 0; i < 7; i++) {
-                        const dateStr = currentDate.toISOString().split('T')[0];
+                        const dateStr = formatYMD(currentDate);
                         const date = new Date(currentDate);
 
                         // Only include days that are within the current year
@@ -292,7 +291,7 @@ export default function GitHubContributions() {
                                                 boxShadow: "0 0 8px rgba(255,255,255,0.3)"
                                             }}
                                             onMouseEnter={(e) => {
-                                                if (day && count > 0) {
+                                                if (day) {
                                                     handleMouseEnter(day, e);
                                                 }
                                             }}
