@@ -86,6 +86,7 @@ export default function GitHubContributions() {
     const [error, setError] = useState<string | null>(null);
     const [tooltip, setTooltip] = useState<TooltipData | null>(null);
     const [maxDay, setMaxDay] = useState<{ date: string; count: number } | null>(null);
+    const [longestStreak, setLongestStreak] = useState<{ length: number; startDate: string; endDate: string } | null>(null);
     const [year] = useState(new Date().getFullYear());
 
     useEffect(() => {
@@ -123,10 +124,46 @@ export default function GitHubContributions() {
 
                 setMaxDay(currentMax.count > 0 ? currentMax : null);
 
-                // Start from January 1st of the current year
+                // Calculate longest streak
                 const yearStart = new Date(year, 0, 1);
-                // End at December 31st of the current year
                 const yearEnd = new Date(year, 11, 31);
+                let currentStreak = 0;
+                let maxStreak = 0;
+                let currentStreakStart: string | null = null;
+                let longestStreakStart: string | null = null;
+                let longestStreakEnd: string | null = null;
+                const checkDate = new Date(yearStart);
+                
+                while (checkDate <= yearEnd) {
+                    const dateStr = formatYMD(checkDate);
+                    const contribution = contributionsMap.get(dateStr);
+                    
+                    if (contribution && contribution.count > 0) {
+                        if (currentStreak === 0) {
+                            currentStreakStart = dateStr;
+                        }
+                        currentStreak++;
+                        
+                        if (currentStreak > maxStreak) {
+                            maxStreak = currentStreak;
+                            longestStreakStart = currentStreakStart;
+                            longestStreakEnd = dateStr;
+                        }
+                    } else {
+                        currentStreak = 0;
+                        currentStreakStart = null;
+                    }
+                    
+                    checkDate.setDate(checkDate.getDate() + 1);
+                }
+                
+                setLongestStreak(
+                    maxStreak > 0 && longestStreakStart && longestStreakEnd
+                        ? { length: maxStreak, startDate: longestStreakStart, endDate: longestStreakEnd }
+                        : null
+                );
+
+                // Start from January 1st of the current year
 
                 // Find the first Sunday of the year (or before if Jan 1st is not Sunday)
                 const firstSunday = new Date(yearStart);
@@ -394,6 +431,41 @@ export default function GitHubContributions() {
                         </div>
                         <span className="text-[10px] text-zinc-500 group-hover:text-zinc-300 transition-colors font-medium">Golden Bead</span>
                     </div>
+                    {longestStreak && (
+                        <div
+                            className="flex items-center gap-1.5 cursor-help group w-fit"
+                            onMouseEnter={(e) => {
+                                const startDate = new Date(longestStreak.startDate + 'T00:00:00').toLocaleDateString('en-US', {
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                });
+                                const endDate = new Date(longestStreak.endDate + 'T00:00:00').toLocaleDateString('en-US', {
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                });
+                                const message = longestStreak.startDate === longestStreak.endDate
+                                    ? `${longestStreak.length} day streak on ${startDate}`
+                                    : ` ${startDate} - ${endDate}`;
+                                handleLegendMouseEnter(message, e);
+                            }}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            {/* <div className="flex gap-0.5">
+                                {[0, 1, 2].map((i) => (
+                                    <div
+                                        key={i}
+                                        className="w-[10px] h-[10px] rounded-[2px]"
+                                        style={{ backgroundColor: LEVEL_COLORS[3] }}
+                                    />
+                                ))}
+                            </div> */}
+                            <span className="text-[10px] text-zinc-500 group-hover:text-zinc-300 transition-colors font-medium">
+                                Longest Streak: {longestStreak.length} days
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
 
