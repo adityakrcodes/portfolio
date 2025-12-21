@@ -1,10 +1,342 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
 import { logo, text } from "./styles/fonts";
 import GitHubContributions from "./components/GitHubContributions";
+import { useState } from "react";
+
+// Tech logos mapping (using DevIcons CDN)
+const techLogos: Record<string, { icon: string; color: string }> = {
+  TypeScript: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    color: "#3178C6",
+  },
+  React: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    color: "#61DAFB",
+  },
+  "Next.js": {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+    color: "#ffffff",
+  },
+  "Node.js": {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+    color: "#339933",
+  },
+  PostgreSQL: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+    color: "#4169E1",
+  },
+  AWS: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+    color: "#FF9900",
+  },
+  "Tailwind CSS": {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    color: "#06B6D4",
+  },
+  Firebase: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
+    color: "#FFCA28",
+  },
+  MongoDB: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+    color: "#47A248",
+  },
+  Docker: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+    color: "#2496ED",
+  },
+  Git: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+    color: "#F05032",
+  },
+  Figma: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
+    color: "#F24E1E",
+  },
+  Python: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+    color: "#3776AB",
+  },
+  FastAPI: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+    color: "#009688",
+  },
+  Redis: {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
+    color: "#DC382D",
+  },
+  Stripe: {
+    icon: "https://images.ctfassets.net/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_logo.svg",
+    color: "#635BFF",
+  },
+  "Socket.io": {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/socketio/socketio-original.svg",
+    color: "#ffffff",
+  },
+  OpenAI: {
+    icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/openai.svg",
+    color: "#412991",
+  },
+  "REST APIs": {
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/json/json-original.svg",
+    color: "#00ADD8",
+  },
+};
+
+// Check if icon needs invert filter (for dark icons on dark bg)
+const needsInvert = ["Next.js", "Socket.io", "OpenAI"];
+
+// TechHover component (inline text version)
+function TechHover({ name }: { name: string }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const tech = techLogos[name];
+
+  return (
+    <span
+      className="relative inline-block cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <motion.span
+        className="text-white relative z-10 px-1 py-0.5 rounded transition-colors"
+        animate={{
+          color: isHovered ? tech?.color || "#ffffff" : "#ffffff",
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        {name}
+      </motion.span>
+      
+      <AnimatePresence>
+        {isHovered && tech && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.8 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 400, 
+              damping: 20,
+              mass: 0.8
+            }}
+            className="absolute -top-14 left-1/2 -translate-x-1/2 z-50"
+          >
+            <motion.div
+              className="relative p-3 rounded-xl backdrop-blur-xl border border-white/20 flex items-center justify-center min-w-[56px] min-h-[56px]"
+              style={{ 
+                background: `linear-gradient(135deg, ${tech.color}15 0%, ${tech.color}08 100%)`,
+                boxShadow: `0 0 30px ${tech.color}30, 0 10px 40px rgba(0,0,0,0.3)`
+              }}
+            >
+              <motion.img
+                src={tech.icon}
+                alt={name}
+                className="max-w-[20px] max-h-[20px] w-auto h-auto object-contain"
+                style={{ filter: needsInvert.includes(name) ? "invert(1)" : "none" }}
+                initial={{ rotate: -20, scale: 0.5 }}
+                animate={{ 
+                  rotate: 0, 
+                  scale: 1,
+                }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 15 
+                }}
+              />
+              
+              {/* Animated glow ring */}
+              <motion.div
+                className="absolute inset-0 rounded-xl"
+                style={{ 
+                  border: `1px solid ${tech.color}`,
+                  boxShadow: `0 0 15px ${tech.color}50`
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Floating particles */}
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 rounded-full"
+                  style={{ backgroundColor: tech.color }}
+                  initial={{ 
+                    x: 0, 
+                    y: 0, 
+                    opacity: 0,
+                    left: "50%",
+                    top: "50%"
+                  }}
+                  animate={{ 
+                    x: [0, (i - 1) * 15], 
+                    y: [0, -20 - i * 5],
+                    opacity: [0, 1, 0],
+                    scale: [0.5, 1, 0.5]
+                  }}
+                  transition={{ 
+                    duration: 1.2,
+                    delay: i * 0.15,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                />
+              ))}
+            </motion.div>
+            
+            {/* Arrow pointer */}
+            <motion.div
+              className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 border-r border-b border-white/20"
+              style={{ 
+                background: `linear-gradient(135deg, ${tech.color}15 0%, ${tech.color}08 100%)`
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </span>
+  );
+}
+
+// TechBadge component (for experience/skills tags)
+function TechBadge({ name }: { name: string }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const tech = techLogos[name];
+
+  return (
+    <span
+      className="relative inline-block"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <motion.span
+        className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium bg-white/10 text-white rounded-full border border-white/20 cursor-pointer"
+        animate={{
+          borderColor: isHovered && tech ? tech.color : "rgba(255,255,255,0.2)",
+          backgroundColor: isHovered && tech ? `${tech.color}15` : "rgba(255,255,255,0.1)",
+        }}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.2 }}
+      >
+        {/* Inline icon when hovered */}
+        <AnimatePresence>
+          {isHovered && tech && (
+            <motion.img
+              src={tech.icon}
+              alt={name}
+              className="w-4 h-4"
+              style={{ filter: needsInvert.includes(name) ? "invert(1)" : "none" }}
+              initial={{ width: 0, opacity: 0, marginRight: -8 }}
+              animate={{ width: 16, opacity: 1, marginRight: 0 }}
+              exit={{ width: 0, opacity: 0, marginRight: -8 }}
+              transition={{ duration: 0.2 }}
+            />
+          )}
+        </AnimatePresence>
+        <motion.span
+          animate={{
+            color: isHovered && tech ? tech.color : "#ffffff",
+          }}
+          transition={{ duration: 0.2 }}
+        >
+          {name}
+        </motion.span>
+      </motion.span>
+
+      {/* Floating logo tooltip */}
+      <AnimatePresence>
+        {isHovered && tech && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.9 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 500, 
+              damping: 25,
+            }}
+            className="absolute -top-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
+          >
+            <motion.div
+              className="relative p-2.5 rounded-xl backdrop-blur-xl border border-white/20"
+              style={{ 
+                background: `linear-gradient(135deg, ${tech.color}20 0%, ${tech.color}10 100%)`,
+                boxShadow: `0 0 25px ${tech.color}40, 0 8px 32px rgba(0,0,0,0.4)`
+              }}
+            >
+              <motion.img
+                src={tech.icon}
+                alt={name}
+                className="w-7 h-7"
+                style={{ filter: needsInvert.includes(name) ? "invert(1)" : "none" }}
+                initial={{ rotate: -15, scale: 0.6 }}
+                animate={{ 
+                  rotate: [0, 5, -5, 0],
+                  scale: 1,
+                }}
+                transition={{ 
+                  rotate: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  },
+                  scale: {
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15
+                  }
+                }}
+              />
+              
+              {/* Pulsing glow */}
+              <motion.div
+                className="absolute inset-0 rounded-xl"
+                style={{ 
+                  border: `1px solid ${tech.color}`,
+                }}
+                animate={{ 
+                  boxShadow: [
+                    `0 0 10px ${tech.color}30`,
+                    `0 0 20px ${tech.color}50`,
+                    `0 0 10px ${tech.color}30`
+                  ],
+                }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+            
+            {/* Arrow */}
+            <div
+              className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 border-r border-b border-white/20"
+              style={{ 
+                background: `linear-gradient(135deg, ${tech.color}20 0%, ${tech.color}10 100%)`
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </span>
+  );
+}
 
 // Animation variants
 const fadeInUp = {
@@ -132,9 +464,9 @@ export default function Home() {
                 className={`text-lg md:text-xl text-zinc-400 max-w-xl mb-8 ${text.className}`}
               >
                 I build interactive web apps using{" "}
-                <span className="text-white">TypeScript</span>,{" "}
-                <span className="text-white">React</span>, and{" "}
-                <span className="text-white">Next.js</span>. Focused on creating
+                <TechHover name="TypeScript" />,{" "}
+                <TechHover name="React" />, and{" "}
+                <TechHover name="Next.js" />. Focused on creating
                 beautiful, performant experiences.
               </motion.p>
 
@@ -244,9 +576,7 @@ export default function Home() {
 
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((tech) => (
-                    <span key={tech} className="inline-flex items-center px-3 py-1.5 text-sm font-medium bg-white/10 text-white rounded-full border border-white/20 transition-all hover:bg-white/15 hover:scale-105">
-                      {tech}
-                    </span>
+                    <TechBadge key={tech} name={tech} />
                   ))}
                 </div>
               </motion.div>
@@ -432,16 +762,15 @@ export default function Home() {
               <div className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]">
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, index) => (
-                    <motion.span
+                    <motion.div
                       key={skill}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="inline-flex items-center px-3 py-1.5 text-sm font-medium bg-white/10 text-white rounded-full border border-white/20 transition-all hover:bg-white/15 hover:scale-105"
                     >
-                      {skill}
-                    </motion.span>
+                      <TechBadge name={skill} />
+                    </motion.div>
                   ))}
                 </div>
               </div>
