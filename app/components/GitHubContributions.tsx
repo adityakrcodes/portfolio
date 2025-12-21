@@ -24,12 +24,13 @@ interface TooltipData {
 
 const GITHUB_USERNAME = "adityakrcodes";
 
+// GitHub dark mode contribution graph colors (from GitHub's current dark mode palette)
 const LEVEL_COLORS = [
-    "#3b3b3b", // Level 0 - zinc-700, clearly visible
-    "#52525b", // Level 1 - zinc-600
-    "#71717a", // Level 2 - zinc-500
-    "#C0C0C0", // Level 3 - zinc-400
-    "#E5E4E2", // Level 4 - white for max contributions
+    "#151C23", // Level 0 - empty (very dark gray)
+    "#0e4429", // Level 1 - low (dark green)
+    "#006d32", // Level 2 - medium (green)
+    "#26a641", // Level 3 - high (light green)
+    "#39d353", // Level 4 - highest (bright green)
 ];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
