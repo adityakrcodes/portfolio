@@ -26,7 +26,7 @@ const GITHUB_USERNAME = "adityakrcodes";
 
 // GitHub dark mode contribution graph colors (from GitHub's current dark mode palette)
 const LEVEL_COLORS = [
-    "#151C23", // Level 0 - empty (very dark gray)
+    "#2c3229", // Level 0 - empty (very dark gray)
     "#0e4429", // Level 1 - low (dark green)
     "#006d32", // Level 2 - medium (green)
     "#26a641", // Level 3 - high (light green)
