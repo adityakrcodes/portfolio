@@ -233,21 +233,6 @@ function TechBadge({ name }: { name: string }) {
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.2 }}
       >
-        {/* Inline icon when hovered */}
-        <AnimatePresence>
-          {isHovered && tech && (
-            <motion.img
-              src={tech.icon}
-              alt={name}
-              className="w-4 h-4"
-              style={{ filter: needsInvert.includes(name) ? "invert(1)" : "none" }}
-              initial={{ width: 0, opacity: 0, marginRight: -8 }}
-              animate={{ width: 16, opacity: 1, marginRight: 0 }}
-              exit={{ width: 0, opacity: 0, marginRight: -8 }}
-              transition={{ duration: 0.2 }}
-            />
-          )}
-        </AnimatePresence>
         <motion.span
           animate={{
             color: isHovered && tech ? tech.color : "#ffffff",
@@ -257,64 +242,55 @@ function TechBadge({ name }: { name: string }) {
           {name}
         </motion.span>
       </motion.span>
-
-      {/* Floating logo tooltip */}
+      
       <AnimatePresence>
         {isHovered && tech && (
           <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.9 }}
+            initial={{ opacity: 0, y: 10, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.9 }}
+            exit={{ opacity: 0, y: 10, scale: 0.8 }}
             transition={{ 
               type: "spring", 
-              stiffness: 500, 
-              damping: 25,
+              stiffness: 400, 
+              damping: 20,
+              mass: 0.8
             }}
             className="absolute -top-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
           >
             <motion.div
-              className="relative p-2.5 rounded-xl backdrop-blur-xl border border-white/20"
+              className="relative p-3 rounded-xl backdrop-blur-xl border border-white/20 flex items-center justify-center min-w-[56px] min-h-[56px]"
               style={{ 
-                background: `linear-gradient(135deg, ${tech.color}20 0%, ${tech.color}10 100%)`,
-                boxShadow: `0 0 25px ${tech.color}40, 0 8px 32px rgba(0,0,0,0.4)`
+                background: `linear-gradient(135deg, ${tech.color}15 0%, ${tech.color}08 100%)`,
+                boxShadow: `0 0 30px ${tech.color}30, 0 10px 40px rgba(0,0,0,0.3)`
               }}
             >
               <motion.img
                 src={tech.icon}
                 alt={name}
-                className="w-7 h-7"
+                className="max-w-[20px] max-h-[20px] w-auto h-auto object-contain"
                 style={{ filter: needsInvert.includes(name) ? "invert(1)" : "none" }}
-                initial={{ rotate: -15, scale: 0.6 }}
+                initial={{ rotate: -20, scale: 0.5 }}
                 animate={{ 
-                  rotate: [0, 5, -5, 0],
+                  rotate: 0, 
                   scale: 1,
                 }}
                 transition={{ 
-                  rotate: {
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  },
-                  scale: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 15
-                  }
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 15 
                 }}
               />
               
-              {/* Pulsing glow */}
+              {/* Animated glow ring */}
               <motion.div
                 className="absolute inset-0 rounded-xl"
                 style={{ 
                   border: `1px solid ${tech.color}`,
+                  boxShadow: `0 0 15px ${tech.color}50`
                 }}
+                initial={{ opacity: 0 }}
                 animate={{ 
-                  boxShadow: [
-                    `0 0 10px ${tech.color}30`,
-                    `0 0 20px ${tech.color}50`,
-                    `0 0 10px ${tech.color}30`
-                  ],
+                  opacity: [0.3, 0.6, 0.3],
                 }}
                 transition={{ 
                   duration: 1.5, 
@@ -322,14 +298,45 @@ function TechBadge({ name }: { name: string }) {
                   ease: "easeInOut"
                 }}
               />
+              
+              {/* Floating particles */}
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 rounded-full"
+                  style={{ backgroundColor: tech.color }}
+                  initial={{ 
+                    x: 0, 
+                    y: 0, 
+                    opacity: 0,
+                    left: "50%",
+                    top: "50%"
+                  }}
+                  animate={{ 
+                    x: [0, (i - 1) * 15], 
+                    y: [0, -20 - i * 5],
+                    opacity: [0, 1, 0],
+                    scale: [0.5, 1, 0.5]
+                  }}
+                  transition={{ 
+                    duration: 1.2,
+                    delay: i * 0.15,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                />
+              ))}
             </motion.div>
             
-            {/* Arrow */}
-            <div
-              className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 border-r border-b border-white/20"
+            {/* Arrow pointer */}
+            <motion.div
+              className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 border-r border-b border-white/20"
               style={{ 
-                background: `linear-gradient(135deg, ${tech.color}20 0%, ${tech.color}10 100%)`
+                background: `linear-gradient(135deg, ${tech.color}15 0%, ${tech.color}08 100%)`
               }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
             />
           </motion.div>
         )}
