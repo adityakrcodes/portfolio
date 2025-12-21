@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl px-4 py-3 transition-all hover:bg-zinc-800/80 hover:border-white/20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <span className={`text-xl hidden sm:block ${logo.className}`}>
+              <span className={`text-xl ${logo.className}`}>
                 AdityaKrCodes <span className="text-zinc-400 font-normal text-sm">v2.1</span>
               </span>
             </Link>
