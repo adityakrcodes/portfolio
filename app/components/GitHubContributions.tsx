@@ -83,6 +83,7 @@ export default function GitHubContributions() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [tooltip, setTooltip] = useState<TooltipData | null>(null);
+    const [maxDay, setMaxDay] = useState<{ date: string; count: number } | null>(null);
     const [year] = useState(new Date().getFullYear());
 
     useEffect(() => {
@@ -104,14 +105,21 @@ export default function GitHubContributions() {
 
                 // Create a map of dates to contributions for quick lookup
                 const contributionsMap = new Map<string, ContributionDay>();
+                let currentMax = { date: '', count: 0 };
+
                 contributions.forEach((day: { date: string; count: number; level: number }) => {
                     total += day.count;
+                    if (day.count > currentMax.count) {
+                        currentMax = { date: day.date, count: day.count };
+                    }
                     contributionsMap.set(day.date, {
                         date: day.date,
                         count: day.count,
                         level: day.level,
                     });
                 });
+
+                setMaxDay(currentMax.count > 0 ? currentMax : null);
 
                 // Start from January 1st of the current year
                 const yearStart = new Date(year, 0, 1);
@@ -280,23 +288,41 @@ export default function GitHubContributions() {
                                     const level = day?.level ?? 0;
                                     const count = day?.count ?? 0;
 
+                                    const isMaxDay = day && day.date === maxDay?.date && day.count > 0;
+
                                     return (
-                                        <motion.div
-                                            key={dayIndex}
-                                            className="w-[var(--cell-size)] h-[var(--cell-size)] rounded-[2px] cursor-pointer transition-all duration-150"
-                                            style={{ backgroundColor: LEVEL_COLORS[level] || LEVEL_COLORS[0] }}
-                                            whileHover={{
-                                                scale: 1.4,
-                                                backgroundColor: "#e2e8f0",
-                                                boxShadow: "0 0 8px rgba(255,255,255,0.3)"
-                                            }}
-                                            onMouseEnter={(e) => {
-                                                if (day) {
-                                                    handleMouseEnter(day, e);
-                                                }
-                                            }}
-                                            onMouseLeave={handleMouseLeave}
-                                        />
+                                        <div key={dayIndex} className="relative">
+                                            <motion.div
+                                                className="w-[var(--cell-size)] h-[var(--cell-size)] rounded-[2px] cursor-pointer transition-all duration-150"
+                                                style={{ backgroundColor: LEVEL_COLORS[level] || LEVEL_COLORS[0] }}
+                                                whileHover={{
+                                                    scale: 1.4,
+                                                    backgroundColor: "#e2e8f0",
+                                                    boxShadow: "0 0 8px rgba(255,255,255,0.3)"
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    if (day) {
+                                                        handleMouseEnter(day, e);
+                                                    }
+                                                }}
+                                                onMouseLeave={handleMouseLeave}
+                                            />
+                                            {isMaxDay && (
+                                                <motion.div
+                                                    initial={{ scale: 0, y: 5, rotate: -30 }}
+                                                    animate={{ scale: 1, y: 0, rotate: -15 }}
+                                                    className="absolute -top-2.5 -left-1.5 pointer-events-none z-10"
+                                                >
+                                                    <svg
+                                                        className="w-3 h-3 text-yellow-500 drop-shadow-[0_0_3px_rgba(234,179,8,0.6)]"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" />
+                                                    </svg>
+                                                </motion.div>
+                                            )}
+                                        </div>
                                     );
                                 })}
                             </div>
