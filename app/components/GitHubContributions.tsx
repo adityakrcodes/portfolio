@@ -24,11 +24,11 @@ interface TooltipData {
 const GITHUB_USERNAME = "adityakrcodes";
 
 const LEVEL_COLORS = [
-    "#161b22", // Level 0 - no contributions
-    "#2d333b", // Level 1 - few
-    "#4a5568", // Level 2 - some
-    "#718096", // Level 3 - more
-    "#a0aec0", // Level 4 - most
+    "#3f3f46", // Level 0 - zinc-700, clearly visible
+    "#52525b", // Level 1 - zinc-600
+    "#71717a", // Level 2 - zinc-500
+    "#a1a1aa", // Level 3 - zinc-400
+    "#ffffff", // Level 4 - white for max contributions
 ];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
