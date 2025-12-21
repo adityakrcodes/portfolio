@@ -227,7 +227,7 @@ export default function GitHubContributions() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="contributions-container relative bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 overflow-hidden transition-all hover:bg-zinc-800/80 hover:border-white/20"
+            className="contributions-container relative bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 hover:border-white/20 z-10"
         >
             <div className="flex items-center justify-between mb-4">
                 <a
@@ -324,7 +324,7 @@ export default function GitHubContributions() {
                 <motion.div
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute z-50 px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl pointer-events-none"
+                    className="absolute z-[9999] px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl pointer-events-none"
                     style={{
                         left: tooltip.x,
                         top: tooltip.y,
