@@ -15,10 +15,11 @@ interface ContributionWeek {
 }
 
 interface TooltipData {
-    date: string;
-    count: number;
     x: number;
     y: number;
+    date?: string;
+    count?: number;
+    message?: string;
 }
 
 const GITHUB_USERNAME = "adityakrcodes";
@@ -192,23 +193,36 @@ export default function GitHubContributions() {
         fetchContributions();
     }, [year]);
 
-    const handleMouseEnter = useCallback((day: ContributionDay, event: React.MouseEvent) => {
+    const handleMouseEnter = (day: ContributionDay, event: React.MouseEvent) => {
         const rect = event.currentTarget.getBoundingClientRect();
-        const containerRect = event.currentTarget.closest('.contributions-container')?.getBoundingClientRect();
+        const containerRect = document.querySelector('.contributions-container')?.getBoundingClientRect();
 
         if (containerRect) {
             setTooltip({
+                x: rect.left - containerRect.left + rect.width / 2,
+                y: rect.top - containerRect.top - 10,
                 date: day.date,
                 count: day.count,
-                x: rect.left - containerRect.left + rect.width / 2,
-                y: rect.top - containerRect.top - 8,
             });
         }
-    }, []);
+    };
 
-    const handleMouseLeave = useCallback(() => {
+    const handleLegendMouseEnter = (message: string, event: React.MouseEvent) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        const containerRect = document.querySelector('.contributions-container')?.getBoundingClientRect();
+
+        if (containerRect) {
+            setTooltip({
+                x: rect.left - containerRect.left + rect.width / 2,
+                y: rect.top - containerRect.top - 10,
+                message,
+            });
+        }
+    };
+
+    const handleMouseLeave = () => {
         setTooltip(null);
-    }, []);
+    };
 
     const monthLabels = getMonthLabels(weeks, year);
 
@@ -310,11 +324,29 @@ export default function GitHubContributions() {
                                             {isMaxDay && (
                                                 <motion.div
                                                     initial={{ scale: 0, y: 5, rotate: -30 }}
-                                                    animate={{ scale: 1, y: 0, rotate: -15 }}
+                                                    animate={{
+                                                        scale: 1,
+                                                        y: 0,
+                                                        rotate: -15,
+                                                        filter: [
+                                                            "drop-shadow(0 0 3px rgba(234,179,8,0.6))",
+                                                            "drop-shadow(0 0 8px rgba(234,179,8,0.8))",
+                                                            "drop-shadow(0 0 3px rgba(234,179,8,0.6))"
+                                                        ]
+                                                    }}
+                                                    transition={{
+                                                        filter: {
+                                                            duration: 2,
+                                                            repeat: Infinity,
+                                                            ease: "easeInOut"
+                                                        },
+                                                        scale: { duration: 0.2 },
+                                                        y: { duration: 0.2 }
+                                                    }}
                                                     className="absolute -top-2.5 -left-1.5 pointer-events-none z-10"
                                                 >
                                                     <svg
-                                                        className="w-3 h-3 text-yellow-500 drop-shadow-[0_0_3px_rgba(234,179,8,0.6)]"
+                                                        className="w-3 h-3 text-yellow-500"
                                                         fill="currentColor"
                                                         viewBox="0 0 24 24"
                                                     >
@@ -334,18 +366,36 @@ export default function GitHubContributions() {
                 <span className={text.className}>
                     <span className="text-zinc-300 font-semibold">{totalContributions.toLocaleString()}</span> contributions in {year}
                 </span>
-                <div className="flex items-center gap-1 flex-wrap">
-                    <span className={text.className}>Less</span>
-                    {LEVEL_COLORS.map((color, i) => (
-                        <div
-                            key={i}
-                            className="w-[10px] h-[10px] sm:w-[11px] sm:h-[11px] rounded-sm"
-                            style={{ backgroundColor: color }}
-                        />
-                    ))}
-                    <span className={text.className}>More</span>
+                <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-1.5 text-[10px] text-zinc-500">
+                        <span>Less</span>
+                        {LEVEL_COLORS.map((color, i) => (
+                            <div
+                                key={i}
+                                className="w-[10px] h-[10px] rounded-[2px]"
+                                style={{ backgroundColor: color }}
+                            />
+                        ))}
+                        <span>More</span>
+                    </div>
+                    <div
+                        className="flex items-center gap-1.5 cursor-help group w-fit"
+                        onMouseEnter={(e) => handleLegendMouseEnter("Day with the most commits in the year", e)}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <div className="relative">
+                            <div className="w-[10px] h-[10px] rounded-[2px] bg-[#E5E4E2]" />
+                            <div className="absolute -top-1.5 -left-1 rotate-[-15deg]">
+                                <svg className="w-2.5 h-2.5 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <span className="text-[10px] text-zinc-500 group-hover:text-zinc-300 transition-colors font-medium">Golden Bead</span>
+                    </div>
                 </div>
             </div>
+
             {tooltip && (
                 <motion.div
                     initial={{ opacity: 0, y: 5 }}
@@ -354,11 +404,22 @@ export default function GitHubContributions() {
                     style={{
                         left: tooltip.x,
                         top: tooltip.y,
-                        transform: "translate(-50%, -100%)",
+                        transform: 'translateX(-50%)'
                     }}
                 >
-                    <p className={`text-xs text-white font-medium ${text.className}`}>
-                        {tooltip.count} contribution{tooltip.count !== 1 ? "s" : ""} on {formatDate(tooltip.date)}
+                    <p className="text-[10px] text-zinc-100 whitespace-nowrap">
+                        {tooltip.message ? (
+                            tooltip.message
+                        ) : (
+                            <span className="font-medium">
+                                {tooltip.count} contributions on {new Date(tooltip.date! + 'T00:00:00').toLocaleDateString('en-US', {
+                                    weekday: 'long',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                })}
+                            </span>
+                        )}
                     </p>
                 </motion.div>
             )}
