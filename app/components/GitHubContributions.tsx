@@ -33,17 +33,25 @@ const LEVEL_COLORS = [
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-function getMonthLabels(weeks: ContributionWeek[]): { label: string; index: number }[] {
+function getMonthLabels(weeks: ContributionWeek[], year: number): { label: string; index: number }[] {
   const labels: { label: string; index: number }[] = [];
   let lastMonth = -1;
 
   weeks.forEach((week, weekIndex) => {
     if (week.contributionDays.length > 0) {
-      const firstDay = new Date(week.contributionDays[0].date);
-      const month = firstDay.getMonth();
-      if (month !== lastMonth) {
-        labels.push({ label: MONTHS[month], index: weekIndex });
-        lastMonth = month;
+      // Find the first day of the week that belongs to the current year
+      const firstDayInYear = week.contributionDays.find(day => {
+        const date = new Date(day.date);
+        return date.getFullYear() === year;
+      });
+      
+      if (firstDayInYear) {
+        const date = new Date(firstDayInYear.date);
+        const month = date.getMonth();
+        if (month !== lastMonth) {
+          labels.push({ label: MONTHS[month], index: weekIndex });
+          lastMonth = month;
+        }
       }
     }
   });
@@ -85,28 +93,83 @@ export default function GitHubContributions() {
         
         const contributions = data.contributions || [];
         const weeksData: ContributionWeek[] = [];
-        let currentWeek: ContributionDay[] = [];
         let total = 0;
 
+        // Create a map of dates to contributions for quick lookup
+        const contributionsMap = new Map<string, ContributionDay>();
         contributions.forEach((day: { date: string; count: number; level: number }) => {
           total += day.count;
-          const date = new Date(day.date);
-          const dayOfWeek = date.getDay();
-
-          if (dayOfWeek === 0 && currentWeek.length > 0) {
-            weeksData.push({ contributionDays: currentWeek });
-            currentWeek = [];
-          }
-
-          currentWeek.push({
+          contributionsMap.set(day.date, {
             date: day.date,
             count: day.count,
             level: day.level,
           });
         });
 
-        if (currentWeek.length > 0) {
-          weeksData.push({ contributionDays: currentWeek });
+        // Get the first and last dates
+        if (contributions.length === 0) {
+          setWeeks([]);
+          setTotalContributions(0);
+          setLoading(false);
+          return;
+        }
+
+        // Start from January 1st of the current year
+        const yearStart = new Date(year, 0, 1);
+        // End at December 31st of the current year
+        const yearEnd = new Date(year, 11, 31);
+        
+        // Find the first Sunday of the year (or before if Jan 1st is not Sunday)
+        const firstSunday = new Date(yearStart);
+        const firstDayOfWeek = firstSunday.getDay();
+        firstSunday.setDate(firstSunday.getDate() - firstDayOfWeek);
+
+        // Build weeks from first Sunday to end of year
+        const currentDate = new Date(firstSunday);
+        
+        while (currentDate <= yearEnd) {
+          const weekDays: ContributionDay[] = [];
+          
+          // Build 7 days for this week (Sunday to Saturday)
+          for (let i = 0; i < 7; i++) {
+            const dateStr = currentDate.toISOString().split('T')[0];
+            const date = new Date(currentDate);
+            
+            // Only include days that are within the current year
+            if (date.getFullYear() === year) {
+              const contribution = contributionsMap.get(dateStr);
+              
+              if (contribution) {
+                weekDays.push(contribution);
+              } else {
+                // Add empty day
+                weekDays.push({
+                  date: dateStr,
+                  count: 0,
+                  level: 0,
+                });
+              }
+            } else {
+              // Add placeholder for days outside the year (before Jan 1 or after Dec 31)
+              weekDays.push({
+                date: dateStr,
+                count: 0,
+                level: 0,
+              });
+            }
+            
+            currentDate.setDate(currentDate.getDate() + 1);
+          }
+          
+          // Only add week if it has at least one day in the current year
+          const hasDaysInYear = weekDays.some(day => {
+            const dayDate = new Date(day.date);
+            return dayDate.getFullYear() === year;
+          });
+          
+          if (hasDaysInYear) {
+            weeksData.push({ contributionDays: weekDays });
+          }
         }
 
         setWeeks(weeksData);
@@ -140,7 +203,7 @@ export default function GitHubContributions() {
     setTooltip(null);
   }, []);
 
-  const monthLabels = getMonthLabels(weeks);
+  const monthLabels = getMonthLabels(weeks, year);
 
   if (loading) {
     return (
@@ -181,74 +244,79 @@ export default function GitHubContributions() {
         </a>
       </div>
 
-      <div className="mb-2 ml-8">
-        <div className="relative h-4">
-          {monthLabels.map((item, i) => (
-            <span
-              key={i}
-              className={`absolute text-xs text-zinc-500 ${text.className}`}
-              style={{ left: `${(item.index / weeks.length) * 100}%` }}
-            >
-              {item.label}
-            </span>
-          ))}
+      <div className="overflow-x-auto scrollbar-hide -mx-6 px-6">
+        <div className="mb-2 ml-8 sm:ml-10 min-w-fit">
+          <div className="relative h-4" style={{ width: `${weeks.length * 14}px` }}>
+            {monthLabels.map((item, i) => {
+              // Calculate position: each week is 11px wide + 3px gap = 14px per week
+              const weekWidth = 14;
+              const leftPosition = item.index * weekWidth;
+              return (
+                <span
+                  key={i}
+                  className={`absolute text-xs text-zinc-500 whitespace-nowrap ${text.className}`}
+                  style={{ left: `${leftPosition}px` }}
+                >
+                  {item.label}
+                </span>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <div className="flex gap-1">
-        <div className="flex flex-col justify-around text-xs text-zinc-500 pr-2">
-          <span className={text.className}>Mon</span>
-          <span className={text.className}>Wed</span>
-          <span className={text.className}>Fri</span>
-        </div>
-        <div className="flex gap-[3px] overflow-x-auto pb-2 scrollbar-hide">
-          {weeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col gap-[3px]">
-              {Array.from({ length: 7 }).map((_, dayIndex) => {
-                const day = week.contributionDays.find((d) => {
-                  const date = new Date(d.date);
-                  return date.getDay() === dayIndex;
-                });
+        <div className="flex gap-1 sm:gap-2">
+          <div className="flex flex-col gap-[3px] text-xs text-zinc-500 pr-2 sm:pr-3 min-w-[28px] sm:min-w-[32px] flex-shrink-0">
+            <div className="h-[10px] sm:h-[11px]" />
+            <span className={`h-[10px] sm:h-[11px] flex items-center ${text.className}`}>Mon</span>
+            <div className="h-[10px] sm:h-[11px]" />
+            <span className={`h-[10px] sm:h-[11px] flex items-center ${text.className}`}>Wed</span>
+            <div className="h-[10px] sm:h-[11px]" />
+            <span className={`h-[10px] sm:h-[11px] flex items-center ${text.className}`}>Fri</span>
+            <div className="h-[10px] sm:h-[11px]" />
+          </div>
+          <div className="flex gap-[3px] pb-2 min-w-fit">
+            {weeks.map((week, weekIndex) => (
+              <div key={weekIndex} className="flex flex-col gap-[3px]">
+                {week.contributionDays.map((day, dayIndex) => {
+                  // dayIndex: 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+                  const level = day?.level ?? 0;
+                  const count = day?.count ?? 0;
+                  const date = day?.date ?? '';
 
-                if (!day) {
                   return (
-                    <div
+                    <motion.div
                       key={dayIndex}
-                      className="w-[11px] h-[11px] rounded-sm"
-                      style={{ backgroundColor: "transparent" }}
+                      className="w-[10px] h-[10px] sm:w-[11px] sm:h-[11px] rounded-sm cursor-pointer transition-all duration-150"
+                      style={{ backgroundColor: LEVEL_COLORS[level] || LEVEL_COLORS[0] }}
+                      whileHover={{ 
+                        scale: 1.4, 
+                        backgroundColor: "#e2e8f0",
+                        boxShadow: "0 0 8px rgba(255,255,255,0.3)"
+                      }}
+                      onMouseEnter={(e) => {
+                        if (day && count > 0) {
+                          handleMouseEnter(day, e);
+                        }
+                      }}
+                      onMouseLeave={handleMouseLeave}
                     />
                   );
-                }
-
-                return (
-                  <motion.div
-                    key={dayIndex}
-                    className="w-[11px] h-[11px] rounded-sm cursor-pointer transition-all duration-150"
-                    style={{ backgroundColor: LEVEL_COLORS[day.level] }}
-                    whileHover={{ 
-                      scale: 1.4, 
-                      backgroundColor: "#e2e8f0",
-                      boxShadow: "0 0 8px rgba(255,255,255,0.3)"
-                    }}
-                    onMouseEnter={(e) => handleMouseEnter(day, e)}
-                    onMouseLeave={handleMouseLeave}
-                  />
-                );
-              })}
-            </div>
-          ))}
+                })}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-4 text-xs text-zinc-500">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-4 gap-3 sm:gap-0 text-xs text-zinc-500">
         <span className={text.className}>
           <span className="text-zinc-300 font-semibold">{totalContributions.toLocaleString()}</span> contributions in {year}
         </span>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 flex-wrap">
           <span className={text.className}>Less</span>
           {LEVEL_COLORS.map((color, i) => (
             <div
               key={i}
-              className="w-[11px] h-[11px] rounded-sm"
+              className="w-[10px] h-[10px] sm:w-[11px] sm:h-[11px] rounded-sm"
               style={{ backgroundColor: color }}
             />
           ))}
@@ -269,9 +337,6 @@ export default function GitHubContributions() {
           <p className={`text-xs text-white font-medium ${text.className}`}>
             {tooltip.count} contribution{tooltip.count !== 1 ? "s" : ""} on {formatDate(tooltip.date)}
           </p>
-          <div 
-            className="absolute left-1/2 bottom-0 w-2 h-2 bg-zinc-900 border-r border-b border-zinc-700 transform -translate-x-1/2 translate-y-1/2 rotate-45"
-          />
         </motion.div>
       )}
     </motion.div>
