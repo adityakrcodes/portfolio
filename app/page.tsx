@@ -88,7 +88,7 @@ const techLogos: Record<string, { icon: string; color: string }> = {
 };
 
 // Check if icon needs invert filter (for dark icons on dark bg)
-const needsInvert = ["Next.js", "Socket.io", "OpenAI"];
+const needsInvert = ["Next.js", "Socket.io", "OpenAI", "AWS"];
 
 // TechHover component (inline text version)
 function TechHover({ name }: { name: string }) {
@@ -133,7 +133,11 @@ function TechHover({ name }: { name: string }) {
                 src={tech.icon}
                 alt={name}
                 className="max-w-[20px] max-h-[20px] w-auto h-auto object-contain"
-                style={{ filter: needsInvert.includes(name) ? "invert(1)" : "none" }}
+                style={{ 
+                  filter: needsInvert.includes(name) 
+                    ? `invert(1) drop-shadow(0 -2px 4px ${tech.color}80)` 
+                    : `drop-shadow(0 -2px 4px ${tech.color}80)`
+                }}
                 initial={{ rotate: -20, scale: 0.5 }}
                 animate={{ 
                   rotate: 0, 
@@ -261,7 +265,11 @@ function TechBadge({ name }: { name: string }) {
                 src={tech.icon}
                 alt={name}
                 className="max-w-[20px] max-h-[20px] w-auto h-auto object-contain"
-                style={{ filter: needsInvert.includes(name) ? "invert(1)" : "none" }}
+                style={{ 
+                  filter: needsInvert.includes(name) 
+                    ? `invert(1) drop-shadow(0 -2px 4px ${tech.color}80)` 
+                    : `drop-shadow(0 -2px 4px ${tech.color}80)`
+                }}
                 initial={{ rotate: -20, scale: 0.5 }}
                 animate={{ 
                   rotate: 0, 
