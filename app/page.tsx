@@ -102,11 +102,10 @@ function TechHover({ name }: { name: string }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.span
-        className="text-white relative z-10 px-1 py-0.5 rounded transition-colors"
+        className="text-white relative z-10 px-1 py-0.5 rounded"
         animate={{
           color: isHovered ? tech?.color || "#ffffff" : "#ffffff",
         }}
-        transition={{ duration: 0.2 }}
       >
         {name}
       </motion.span>
@@ -114,14 +113,12 @@ function TechHover({ name }: { name: string }) {
       <AnimatePresence>
         {isHovered && tech && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.8 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 400, 
-              damping: 20,
-              mass: 0.8
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.12,
+              ease: "easeOut",
             }}
             className="absolute -top-14 left-1/2 -translate-x-1/2 z-50"
           >
@@ -204,7 +201,7 @@ function TechHover({ name }: { name: string }) {
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
+              transition={{ duration: 0.1 }}
             />
           </motion.div>
         )}
@@ -231,13 +228,11 @@ function TechBadge({ name }: { name: string }) {
           backgroundColor: isHovered && tech ? `${tech.color}15` : "rgba(255,255,255,0.1)",
         }}
         whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.2 }}
       >
         <motion.span
           animate={{
             color: isHovered && tech ? tech.color : "#ffffff",
           }}
-          transition={{ duration: 0.2 }}
         >
           {name}
         </motion.span>
@@ -246,14 +241,12 @@ function TechBadge({ name }: { name: string }) {
       <AnimatePresence>
         {isHovered && tech && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.8 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 400, 
-              damping: 20,
-              mass: 0.8
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.12,
+              ease: "easeOut",
             }}
             className="absolute -top-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
           >
@@ -331,12 +324,12 @@ function TechBadge({ name }: { name: string }) {
             {/* Arrow pointer */}
             <motion.div
               className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 border-r border-b border-white/20"
-              style={{ 
-                background: `linear-gradient(135deg, ${tech.color}15 0%, ${tech.color}08 100%)`
+              style={{
+                background: `linear-gradient(135deg, ${tech.color}15 0%, ${tech.color}08 100%)`,
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
+              transition={{ duration: 0.1 }}
             />
           </motion.div>
         )}
