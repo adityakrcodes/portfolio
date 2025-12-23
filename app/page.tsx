@@ -532,10 +532,9 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-12"
+            className="mb-2"
           >
-            <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Featured</span>
-            <h2 className={`text-3xl md:text-4xl font-bold ${logo.className}`}>Experience</h2>
+            <h2 className={`text-3xl md:text-4xl font-bold ${logo.className}`}>GitHub Contributions</h2>
           </motion.div>
           {/* GitHub Contributions */}
           <motion.div
@@ -546,6 +545,16 @@ export default function Home() {
             className="mb-12"
           >
             <GitHubContributions />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-5"
+          >
+            <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Featured</span>
+            <h2 className={`text-3xl md:text-4xl font-bold ${logo.className}`}>Experience</h2>
           </motion.div>
           <div className="space-y-6">
             {experiences.map((exp, index) => (
@@ -628,7 +637,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-12"
+            className="mb-5"
           >
             <span className={`text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-2 ${text.className}`}>Featured</span>
             <h2 className={`text-3xl md:text-4xl font-bold ${logo.className}`}>Projects</h2>
