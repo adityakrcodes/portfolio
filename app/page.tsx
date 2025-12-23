@@ -437,7 +437,11 @@ export default function Home() {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <section className="min-h-[80vh] flex items-center px-4">
+      <section
+        id="hero"
+        data-section="hero"
+        className="min-h-[80vh] flex items-center px-4"
+      >
         <div className="max-w-5xl mx-auto w-full">
           <motion.div
             variants={staggerContainer}
@@ -524,8 +528,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="py-24 px-4">
+      {/* Experience / GitHub Section */}
+      <section
+        id="experience"
+        data-section="experience"
+        className="py-24 px-4"
+      >
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -630,7 +638,11 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-24 px-4 bg-zinc-900/30">
+      <section
+        id="projects"
+        data-section="projects"
+        className="py-24 px-4 bg-zinc-900/30"
+      >
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -739,7 +751,11 @@ export default function Home() {
       </section>
 
       {/* About/Skills Section */}
-      <section className="py-24 px-4">
+      <section
+        id="about"
+        data-section="about"
+        className="py-24 px-4"
+      >
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {/* About */}
@@ -797,7 +813,11 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4">
+      <section
+        id="contact"
+        data-section="contact"
+        className="py-24 px-4"
+      >
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -2,20 +2,54 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { logo, text } from "../styles/fonts";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
+  { href: "/#hero", label: "Home", sectionId: "hero" },
+  { href: "/#experience", label: "Experience", sectionId: "experience" },
+  { href: "/#projects", label: "Projects", sectionId: "projects" },
+  { href: "/#about", label: "About", sectionId: "about" },
+  { href: "/#contact", label: "Contact", sectionId: "contact" },
   { href: "/blog", label: "Blog" },
 ];
 
 const Navbar = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  // Track active section on the home page using IntersectionObserver
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sections = document.querySelectorAll<HTMLElement>("[data-section]");
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("data-section");
+            if (id) {
+              setActiveSection(id);
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.4,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [pathname]);
 
   return (
     <>
@@ -36,30 +70,37 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1 bg-zinc-900/50 rounded-full p-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${text.className} ${
-                    pathname === link.href
-                      ? "text-black"
-                      : "text-zinc-400 hover:text-white"
-                  }`}
-                >
-                  {pathname === link.href && (
-                    <motion.div
-                      layoutId="navbar-active"
-                      className="absolute inset-0 bg-white rounded-full"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isSectionLink = !!link.sectionId && pathname === "/";
+                const isActive = isSectionLink
+                  ? activeSection === link.sectionId
+                  : pathname === link.href;
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${text.className} ${
+                      isActive
+                        ? "text-black"
+                        : "text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="navbar-active"
+                        className="absolute inset-0 bg-white rounded-full"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                  </Link>
+                );
+              })}
             </div>
 
             {/* CTA Button */}
@@ -127,20 +168,27 @@ const Navbar = () => {
             className="fixed top-20 left-4 right-4 z-40 bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl p-4 md:hidden transition-all hover:bg-zinc-800/80 hover:border-white/20"
           >
             <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${text.className} ${
-                    pathname === link.href
-                      ? "bg-white text-black"
-                      : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isSectionLink = !!link.sectionId && pathname === "/";
+                const isActive = isSectionLink
+                  ? activeSection === link.sectionId
+                  : pathname === link.href;
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${text.className} ${
+                      isActive
+                        ? "bg-white text-black"
+                        : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
