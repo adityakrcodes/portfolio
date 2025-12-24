@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { logo, text } from "./styles/fonts";
 import GitHubContributions from "./components/GitHubContributions";
+import ProjectModal from "./components/ProjectModal";
 import { useState } from "react";
 import portfolioData from "../data/data.json";
 
@@ -383,6 +384,19 @@ const skills = [
 ];
 
 export default function Home() {
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: typeof projects[0]) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProject(null), 300);
+  };
+
   return (
     <div className="relative">
       {/* Hero Section */}
@@ -606,14 +620,14 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-              <motion.a
+              <motion.div
                 key={index}
-                href={project.link}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl overflow-hidden group transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)]"
+                onClick={() => handleProjectClick(project)}
+                className="bg-zinc-800/60 backdrop-blur-xl border border-zinc-700/40 rounded-2xl overflow-hidden group transition-all hover:bg-zinc-800/80 hover:border-white/20 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] cursor-pointer"
               >
                 {/* Project Image */}
                 <div className="relative h-40 overflow-hidden">
@@ -643,6 +657,14 @@ export default function Home() {
                       {project.status}
                     </span>
                   </div>
+                  {/* Category Badge */}
+                  {project.category && (
+                    <div className="absolute top-3 left-3">
+                      <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-full bg-zinc-900/80 backdrop-blur-sm text-zinc-300 border border-zinc-700/40">
+                        {project.category}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Project Info */}
@@ -669,7 +691,7 @@ export default function Home() {
                     )}
                   </div>
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </div>
 
@@ -803,6 +825,13 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }

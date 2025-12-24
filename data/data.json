@@ -23,12 +23,14 @@
   ],
   "projects": [
     {
-      "title": "E-Commerce Platform",
-      "description": "A full-featured e-commerce solution with real-time inventory, payment processing, and admin dashboard.",
-      "technologies": ["Next.js", "Stripe", "PostgreSQL", "Redis"],
-      "status": "Live",
-      "link": "#",
-      "image": "/images/pfp.png"
+      "title": "Listcraft",
+      "description": "TBA",
+      "technologies": ["Next.js", "Dodo Payments", "Firestore", "TypeScript", "Tailwind CSS"],
+      "status": "Building",
+      "link": "https://listcraft.studio",
+      "repo": "https://github.com/adityakrcodes/listcraft",
+      "image": "/images/pfp.png",
+      "category": "Web App"
     },
     {
       "title": "Task Management App",
@@ -36,7 +38,9 @@
       "technologies": ["React", "Node.js", "Socket.io", "MongoDB"],
       "status": "Live",
       "link": "#",
-      "image": "/images/pfp.png"
+      "repo": "https://github.com/adityakrcodes/task-manager",
+      "image": "/images/pfp.png",
+      "category": "Web App"
     },
     {
       "title": "AI Content Generator",
@@ -44,7 +48,9 @@
       "technologies": ["Python", "FastAPI", "OpenAI", "React"],
       "status": "Building",
       "link": "#",
-      "image": "/images/pfp.png"
+      "repo": "#",
+      "image": "/images/pfp.png",
+      "category": "AI/ML"
     }
   ]
 }
