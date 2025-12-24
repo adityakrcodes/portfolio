@@ -1,0 +1,51 @@
+{
+  "experiences": [
+    {
+      "title": "Full Stack Developer",
+      "company": "Aether Web Media",
+      "type": "Founder",
+      "period": "2022 - Present",
+      "location": "India (Remote)",
+      "description": "Building scalable web applications and helping businesses establish their digital presence.",
+      "technologies": ["Next.js", "React", "Node.js", "PostgreSQL", "AWS"],
+      "current": true
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "Freelance",
+      "type": "Contract",
+      "period": "2020 - 2022",
+      "location": "Remote",
+      "description": "Developed responsive web applications and landing pages for various clients worldwide.",
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "Firebase"],
+      "current": false
+    }
+  ],
+  "projects": [
+    {
+      "title": "E-Commerce Platform",
+      "description": "A full-featured e-commerce solution with real-time inventory, payment processing, and admin dashboard.",
+      "technologies": ["Next.js", "Stripe", "PostgreSQL", "Redis"],
+      "status": "Live",
+      "link": "#",
+      "image": "/images/pfp.png"
+    },
+    {
+      "title": "Task Management App",
+      "description": "Collaborative project management tool with real-time updates and team features.",
+      "technologies": ["React", "Node.js", "Socket.io", "MongoDB"],
+      "status": "Live",
+      "link": "#",
+      "image": "/images/pfp.png"
+    },
+    {
+      "title": "AI Content Generator",
+      "description": "Intelligent content creation tool powered by machine learning for marketing teams.",
+      "technologies": ["Python", "FastAPI", "OpenAI", "React"],
+      "status": "Building",
+      "link": "#",
+      "image": "/images/pfp.png"
+    }
+  ]
+}
+
