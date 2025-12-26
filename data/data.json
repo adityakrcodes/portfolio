@@ -1,57 +1,69 @@
 {
   "experiences": [
     {
-      "title": "Full Stack Developer",
+      "title": "CEO",
       "company": "Aether Web Media",
       "type": "Founder",
-      "period": "2022 - Present",
-      "location": "India (Remote)",
-      "description": "Building scalable web applications and helping businesses establish their digital presence.",
-      "technologies": ["Next.js", "React", "Node.js", "PostgreSQL", "AWS"],
+      "period": "Feb 2022 - Present",
+      "location": "Bangalore, Karnataka",
+      "description": "Designed and developed responsive, scalable, high-performance websites using modern technologies. Built custom full-stack web applications with secure authentication, dashboards, and database integrations. Built backend and designed API, creating scalable REST APIs for client and internal products. Managed deployment, hosting, and server configuration, including containerization and production environments. Planned and executed social media marketing and ad campaigns, focusing on lead generation and conversions. Collaborated with clients to understand business requirements and translate them into scalable technical solutions.",
+      "technologies": ["Next.js", "React", "Node.js", "TypeScript", "Firebase", "AWS", "PostgreSQL", "MongoDB", "Docker"],
       "current": true
-    },
-    {
-      "title": "Frontend Developer",
-      "company": "Freelance",
-      "type": "Contract",
-      "period": "2020 - 2022",
-      "location": "Remote",
-      "description": "Developed responsive web applications and landing pages for various clients worldwide.",
-      "technologies": ["React", "TypeScript", "Tailwind CSS", "Firebase"],
-      "current": false
     }
   ],
   "projects": [
     {
-      "title": "Listcraft",
-      "description": "TBA",
-      "technologies": ["Next.js", "Dodo Payments", "Firestore", "TypeScript", "Tailwind CSS"],
-      "status": "Building",
+      "title": "ListCraft Studios - Listing Optimizer",
+      "description": "Built a production-grade, credit-based SaaS platform for automated e-commerce image generation using Next.js. Engineered a hybrid cloud architecture leveraging Firebase (Auth, Firestore) for real-time workflows and AWS S3 for cost-efficient, scalable asset storage, secured via Signed URLs. Designed a frictionless pay-as-you-go monetization system integrated with Dodo Payments, including automated dispute and refund handling for AI generation failures. Improved system reliability and operational cost efficiency by implementing S3 Lifecycle Rules and Upstash rate-limiting middleware to mitigate API abuse. Implemented a strictly typed API layer using tRPC and Zod, enabling end-to-end type safety, automated validation, and reliable credit accounting across all AI workflows.",
+      "technologies": ["Next.js", "Firebase", "Firestore", "tRPC", "AWS S3", "Dodo Payments", "Zod", "TypeScript"],
+      "status": "Live",
       "link": "https://listcraft.studio",
       "repo": "https://github.com/adityakrcodes/listcraft",
-      "image": "/images/pfp.png",
-      "category": "Web App"
+      "image": "/images/listcraft.png",
+      "category": "SaaS"
     },
     {
-      "title": "Task Management App",
-      "description": "Collaborative project management tool with real-time updates and team features.",
-      "technologies": ["React", "Node.js", "Socket.io", "MongoDB"],
+      "title": "TrustLyst - Influencer Accountability Platform",
+      "description": "Built a B2B SaaS platform enabling brands to evaluate influencer reliability before paid collaborations. Created an Influencer Health Score based on delivery history and dispute patterns to surface high-risk profiles. Implemented verified reporting flows with abuse prevention to maintain trust and data integrity. Designed role-based access and moderation systems using Firebase Auth and Firestore.",
+      "technologies": ["Next.js", "Firebase", "Node.js", "Firestore", "TypeScript"],
       "status": "Live",
       "link": "#",
-      "repo": "https://github.com/adityakrcodes/task-manager",
-      "image": "/images/pfp.png",
-      "category": "Web App"
+      "repo": "#",
+      "image": "/images/trustlyst.png",
+      "category": "SaaS"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Presidency College Bengaluru",
+      "degree": "Bachelor of Computer Applications",
+      "period": "Aug. 2022 – July 2025",
+      "location": "Bengaluru, Karnataka"
     },
     {
-      "title": "AI Content Generator",
-      "description": "Intelligent content creation tool powered by machine learning for marketing teams.",
-      "technologies": ["Python", "FastAPI", "OpenAI", "React"],
-      "status": "Building",
-      "link": "#",
-      "repo": "#",
-      "image": "/images/pfp.png",
-      "category": "AI/ML"
+      "institution": "New Era Public School Patna",
+      "degree": "Intermediate (12th)",
+      "period": "2020 – 2022",
+      "location": "Patna, Bihar"
+    },
+    {
+      "institution": "St. Joseph's High School Patna",
+      "degree": "Matriculation (10th)",
+      "period": "2019 – 2020",
+      "location": "Patna, Bihar"
     }
-  ]
+  ],
+  "personal": {
+    "name": "Aditya Kumar",
+    "email": "adityacodes613@gmail.com",
+    "website": "adityakrcodes.com",
+    "github": "github.com/adityakrcodes"
+  },
+  "skills": {
+    "Languages": ["JavaScript", "TypeScript", "SQL (Postgres)", "HTML/CSS"],
+    "Frameworks": ["Next.js", "React", "Node.js"],
+    "Developer Tools": ["Git", "Docker", "Google Cloud Platform", "Linux", "AWS", "MongoDB"],
+    "Libraries": ["tRPC", "Zod", "Firebase SDK"]
+  }
 }
 
