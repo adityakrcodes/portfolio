@@ -443,7 +443,7 @@ export default function Home() {
                 <TechHover name="TypeScript" />,{" "}
                 <TechHover name="React" />, and{" "}
                 <TechHover name="Next.js" />. Focused on creating
-                beautiful, performant experiences.
+                beautiful, performant and scalable experiences.
               </motion.p>
 
               <motion.div
