@@ -228,11 +228,20 @@ export default function Contact() {
                     />
                   </div>
 
+                  <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-4">
+                    <p className={`text-sm text-amber-400/90 ${text.className}`}>
+                      <span className="font-semibold">Note:</span> The form submission API is currently experiencing issues. Please reach out to me directly via the social links on the left, or email me at{" "}
+                      <a href="mailto:hello@adityakrcodes.dev" className="underline hover:text-amber-300 transition-colors">
+                        hello@adityakrcodes.dev
+                      </a>
+                      .
+                    </p>
+                  </div>
+
                   <div className="flex justify-center">
-                    </div>
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={true}
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium bg-white text-[#0a0a0b] rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] hover:bg-zinc-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                     {isSubmitting ? (
@@ -277,6 +286,7 @@ export default function Contact() {
                       </>
                     )}
                   </button>
+                  </div>
                 </form>
               </div>
             </motion.div>
