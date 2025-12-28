@@ -55,11 +55,11 @@ const Footer = () => {
                 AK
               </div>
               <span className={`font-semibold text-lg ${logo.className}`}>
-                Aditya<span className="text-white">.</span>
+                AdityaKrCodes
               </span>
             </Link>
             <p className={`text-zinc-500 text-sm text-center md:text-left max-w-xs ${text.className}`}>
-              Building digital experiences that matter. Based in India, working globally.
+              Building digital experiences that matter. <br /> Based in India, working globally.
             </p>
           </div>
 
