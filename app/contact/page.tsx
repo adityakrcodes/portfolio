@@ -7,8 +7,8 @@ import { logo, text } from "../styles/fonts";
 const contactMethods = [
   {
     name: "Email",
-    value: "hello@adityakrcodes.dev",
-    href: "mailto:hello@adityakrcodes.dev",
+    value: "mailtoadityakrcodes@gmail.com",
+    href: "mailto:mailtoadityakrcodes@gmail.com",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -231,8 +231,8 @@ export default function Contact() {
                   <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-4">
                     <p className={`text-sm text-amber-400/90 ${text.className}`}>
                       <span className="font-semibold">Note:</span> The form submission API is currently experiencing issues. Please reach out to me directly via the social links on the left, or email me at{" "}
-                      <a href="mailto:hello@adityakrcodes.dev" className="underline hover:text-amber-300 transition-colors">
-                        hello@adityakrcodes.dev
+                      <a href="mailto:mailtoadityakrcodes@gmail.com" className="underline hover:text-amber-300 transition-colors">
+                        mailtoadityakrcodes@gmail.com
                       </a>
                       .
                     </p>
