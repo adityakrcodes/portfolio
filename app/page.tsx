@@ -544,7 +544,7 @@ export default function Home() {
                       {exp.company.charAt(0)}
                     </div>
                     <div>
-                      <h3 className={`text-lg font-semibold ${logo.className}`}>{exp.company}</h3>
+                      <h3 className={`text-lg font-semibold ${text.className}`}>{exp.company}</h3>
                       <p className={`text-zinc-400 text-sm ${text.className}`}>
                         {exp.title} · {exp.type}
                       </p>
