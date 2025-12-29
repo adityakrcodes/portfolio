@@ -7,12 +7,12 @@ import { text } from "./styles/fonts";
 
 export const metadata: Metadata = {
   title: "Aditya | Full Stack Developer",
-  description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Building digital experiences that matter.",
-  keywords: ["Full Stack Developer", "React", "Next.js", "TypeScript", "Web Development"],
+  description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Focused on creating beautiful, performant and scalable experiences.",
+  keywords: ["Full Stack Developer", "React", "Next.js", "TypeScript", "Web Development", "AdityaKrCodes"],
   authors: [{ name: "Aditya" }],
   openGraph: {
     title: "Aditya | Full Stack Developer",
-    description: "Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Focused on creating beautiful, performant and scalable experiences.",
     type: "website",
   },
 };
