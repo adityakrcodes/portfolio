@@ -94,6 +94,8 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full ${
                       project.status === "Live"
                         ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                        : project.status === "Building"
+                        ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
                         : "bg-white/10 text-white border border-white/20"
                     }`}
                   >
@@ -101,6 +103,8 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                       className={`w-1.5 h-1.5 rounded-full ${
                         project.status === "Live"
                           ? "bg-emerald-400"
+                          : project.status === "Building"
+                          ? "bg-yellow-400"
                           : "bg-white"
                       }`}
                     />

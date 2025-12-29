@@ -7,7 +7,17 @@
       "period": "Feb 2022 - Present",
       "location": "Bangalore, Karnataka",
       "description": "Designed and developed responsive, scalable, high-performance websites using modern technologies. Built custom full-stack web applications with secure authentication, dashboards, and database integrations. Built backend and designed API, creating scalable REST APIs for client and internal products. Managed deployment, hosting, and server configuration, including containerization and production environments. Planned and executed social media marketing and ad campaigns, focusing on lead generation and conversions. Collaborated with clients to understand business requirements and translate them into scalable technical solutions.",
-      "technologies": ["Next.js", "React", "Node.js", "TypeScript", "Firebase", "AWS", "PostgreSQL", "MongoDB", "Docker"],
+      "technologies": [
+        "Next.js",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "Firebase",
+        "AWS",
+        "PostgreSQL",
+        "MongoDB",
+        "Docker"
+      ],
       "current": true
     }
   ],
@@ -15,7 +25,14 @@
     {
       "title": "ListCraft Studios - Listing Optimizer",
       "description": "Built a production-grade, credit-based SaaS platform for automated e-commerce image generation using Next.js. Engineered a hybrid cloud architecture leveraging Firebase (Auth, Firestore) for real-time workflows and AWS S3 for cost-efficient, scalable asset storage, secured via Signed URLs. Designed a frictionless pay-as-you-go monetization system integrated with Dodo Payments, including automated dispute and refund handling for AI generation failures. Improved system reliability and operational cost efficiency by implementing S3 Lifecycle Rules and Upstash rate-limiting middleware to mitigate API abuse. Implemented a strictly typed API layer using tRPC and Zod, enabling end-to-end type safety, automated validation, and reliable credit accounting across all AI workflows.",
-      "technologies": ["Next.js", "Firebase", "Firestore", "tRPC", "AWS S3", "Dodo Payments", "Zod", "TypeScript"],
+      "technologies": [
+        "Next.js",
+        "Firebase",
+        "Firestore",
+        "AWS S3",
+        "Dodo Payments",
+        "TypeScript"
+      ],
       "status": "Live",
       "link": "https://listcraft.studio",
       "repo": "https://github.com/adityakrcodes/listcraft",
@@ -25,8 +42,14 @@
     {
       "title": "TrustLyst - Influencer Accountability Platform",
       "description": "Built a B2B SaaS platform enabling brands to evaluate influencer reliability before paid collaborations. Created an Influencer Health Score based on delivery history and dispute patterns to surface high-risk profiles. Implemented verified reporting flows with abuse prevention to maintain trust and data integrity. Designed role-based access and moderation systems using Firebase Auth and Firestore.",
-      "technologies": ["Next.js", "Firebase", "Node.js", "Firestore", "TypeScript"],
-      "status": "Live",
+      "technologies": [
+        "Next.js",
+        "Firebase",
+        "Node.js",
+        "Firestore",
+        "TypeScript"
+      ],
+      "status": "Building",
       "link": "#",
       "repo": "#",
       "image": "/images/trustlyst.png",
@@ -62,8 +85,14 @@
   "skills": {
     "Languages": ["JavaScript", "TypeScript", "SQL (Postgres)", "HTML/CSS"],
     "Frameworks": ["Next.js", "React", "Node.js"],
-    "Developer Tools": ["Git", "Docker", "Google Cloud Platform", "Linux", "AWS", "MongoDB"],
+    "Developer Tools": [
+      "Git",
+      "Docker",
+      "Google Cloud Platform",
+      "Linux",
+      "AWS",
+      "MongoDB"
+    ],
     "Libraries": ["tRPC", "Zod", "Firebase SDK"]
   }
 }
-

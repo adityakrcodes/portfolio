@@ -50,6 +50,8 @@ export default function ProjectCard({
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full ${
               project.status === "Live"
                 ? "bg-emerald-500/20 text-emerald-400"
+                : project.status === "Building"
+                ? "bg-yellow-500/20 text-yellow-400"
                 : "bg-white/10 text-white"
             }`}
           >
@@ -57,6 +59,8 @@ export default function ProjectCard({
               className={`w-1.5 h-1.5 rounded-full ${
                 project.status === "Live"
                   ? "bg-emerald-400"
+                  : project.status === "Building"
+                  ? "bg-yellow-400"
                   : "bg-white"
               }`}
             />
