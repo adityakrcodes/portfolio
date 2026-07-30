@@ -16,9 +16,9 @@ const navLinks = [
 
 const Navbar = () => {
   const pathname = usePathname();
-  if (pathname === "/bio") return null;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  if (pathname === "/bio") return null;
 
   // Track active section on the home page using IntersectionObserver
   useEffect(() => {
