@@ -16,6 +16,7 @@ const navLinks = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  if (pathname === "/bio") return null;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
