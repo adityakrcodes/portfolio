@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/#experience", label: "Experience", sectionId: "experience" },
   { href: "/#projects", label: "Projects", sectionId: "projects" },
   { href: "/#about", label: "About", sectionId: "about" },
-  { href: "/#contact", label: "Contact", sectionId: "contact" },
+  { href: "/#contact", label: "Contact", sectionId: "contact", matchPath: "/contact" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -74,7 +74,7 @@ const Navbar = () => {
                 const isSectionLink = !!link.sectionId && pathname === "/";
                 const isActive = isSectionLink
                   ? activeSection === link.sectionId
-                  : pathname === link.href;
+                  : pathname === link.href || (!!link.matchPath && pathname === link.matchPath);
 
                 return (
                   <Link
@@ -172,7 +172,7 @@ const Navbar = () => {
                 const isSectionLink = !!link.sectionId && pathname === "/";
                 const isActive = isSectionLink
                   ? activeSection === link.sectionId
-                  : pathname === link.href;
+                  : pathname === link.href || (!!link.matchPath && pathname === link.matchPath);
 
                 return (
                   <Link
