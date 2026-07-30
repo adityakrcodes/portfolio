@@ -12,7 +12,6 @@ const navLinks = [
   { href: "/#projects", label: "Projects", sectionId: "projects", matchPath: "/projects" },
   { href: "/#about", label: "About", sectionId: "about", matchPath: "/about" },
   { href: "/#contact", label: "Contact", sectionId: "contact", matchPath: "/contact" },
-  { href: "/blog", label: "Blog" },
 ];
 
 const Navbar = () => {
@@ -101,6 +100,28 @@ const Navbar = () => {
                   </Link>
                 );
               })}
+              <div className="w-px h-5 bg-zinc-700/50 mx-1" />
+              <Link
+                href="/blog"
+                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${text.className} ${
+                  pathname === "/blog"
+                    ? "text-black"
+                    : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                {pathname === "/blog" && (
+                  <motion.div
+                    layoutId="navbar-active"
+                    className="absolute inset-0 bg-white rounded-full"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                <span className="relative z-10">Blog</span>
+              </Link>
             </div>
 
             {/* CTA Button */}
@@ -189,6 +210,18 @@ const Navbar = () => {
                   </Link>
                 );
               })}
+              <div className="h-px bg-zinc-700/50 my-1" />
+              <Link
+                href="/blog"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${text.className} ${
+                  pathname === "/blog"
+                    ? "bg-white text-black"
+                    : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                }`}
+              >
+                Blog
+              </Link>
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
