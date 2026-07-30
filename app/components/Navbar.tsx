@@ -9,8 +9,8 @@ import { logo, text } from "../styles/fonts";
 const navLinks = [
   { href: "/#hero", label: "Home", sectionId: "hero" },
   { href: "/#experience", label: "Experience", sectionId: "experience" },
-  { href: "/#projects", label: "Projects", sectionId: "projects" },
-  { href: "/#about", label: "About", sectionId: "about" },
+  { href: "/#projects", label: "Projects", sectionId: "projects", matchPath: "/projects" },
+  { href: "/#about", label: "About", sectionId: "about", matchPath: "/about" },
   { href: "/#contact", label: "Contact", sectionId: "contact", matchPath: "/contact" },
   { href: "/blog", label: "Blog" },
 ];
