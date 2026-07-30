@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Focused on creating beautiful, performant and scalable experiences.",
   keywords: ["Full Stack Developer", "React", "Next.js", "TypeScript", "Web Development", "AdityaKrCodes"],
   authors: [{ name: "AdityaKrCodes" }],
+  icons: { icon: "/favicon.svg" },
   openGraph: {
     title: "AdityaKrCodes",
     description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Focused on creating beautiful, performant and scalable experiences.",
