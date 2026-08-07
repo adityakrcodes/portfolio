@@ -37,12 +37,20 @@ export default function ProjectCard({
     >
       {/* Project Image */}
       <div className="relative h-40 overflow-hidden">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <div className="flex items-center justify-center h-40 bg-zinc-900/60">
+            <span className="text-xl tracking-widest text-zinc-300 uppercase border border-zinc-700/40 rounded-lg px-4 py-2">
+              In Dev
+            </span>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         {/* Status Badge */}
         <div className="absolute top-3 right-3">

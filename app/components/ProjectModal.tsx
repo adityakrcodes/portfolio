@@ -80,12 +80,20 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
               {/* Project Image */}
               <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-t-2xl">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-64 md:h-80 bg-zinc-900/60">
+                    <span className="text-3xl tracking-widest text-zinc-300 uppercase border border-zinc-700/40 rounded-xl px-6 py-3">
+                      In Dev
+                    </span>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
                 
                 {/* Status Badge */}

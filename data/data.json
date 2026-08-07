@@ -54,6 +54,21 @@
       "repo": "#",
       "image": "/images/trustlyst.png",
       "category": "SaaS"
+    },
+    {
+      "title": "MenuDeck",
+      "description": "Will update soon, as I build",
+      "technologies": [
+        "Next.js",
+        "Cloudflare",
+        "D1",
+        "R2",
+        "Node.js"
+      ],
+      "status": "Building",
+      "link": "#",
+      "repo": "#",
+      "image": ""
     }
   ],
   "education": [
