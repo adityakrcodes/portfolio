@@ -2,6 +2,6 @@ packages:
   - .
 
 allowBuilds:
-  esbuild: false
-  sharp: false
-  workerd: false
+  esbuild: true
+  workerd: true
+  sharp: true
