@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import React from "react";
 import "./globals.css";
 import Navbar from "./components/Navbar";
@@ -25,6 +26,18 @@ export default function RootLayout({
 }>) {
   return (
       <html lang="en" className="dark" style={{ '--font-league-spartan': text.style.fontFamily } as React.CSSProperties}>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-9D6JCQ71QP"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9D6JCQ71QP');
+        `}
+      </Script>
       <body className={`min-h-screen flex flex-col ${text.className}`}>
         {/* Background layers */}
         <div className="fixed inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:60px_60px]" />
