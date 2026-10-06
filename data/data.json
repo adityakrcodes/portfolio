@@ -69,6 +69,24 @@
       "link": "#",
       "repo": "#",
       "image": ""
+    },
+    {
+      "title": "Agency OS",
+      "description": "Will update soon, as I build",
+      "technologies": [
+        "Next.js",
+        "Hono",
+        "Cloudflare",
+        "D1",
+        "R2",
+        "Drizzle",
+        "better-auth",
+        "MCP"
+      ],
+      "status": "Building",
+      "link": "#",
+      "repo": "#",
+      "image": ""
     }
   ],
   "education": [
